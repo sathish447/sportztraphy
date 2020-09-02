@@ -1,0 +1,200 @@
+<app-inner-header></app-inner-header>
+<article>
+  <section class="content-section content-boxes">
+    <div class="container">
+      <div class="title-box">
+        <div class="black-bg-box">
+          <div class="row">
+            <div class="col mid-table">
+              <div class="icon"><img src="assets/images/user-pic.svg" /></div>
+              <div class="title-name"><span class="title-content">My Account</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="div-table-whl">
+        <div class="div-table-wrapper">
+          <div id="accordionExample">
+          <div class="content-tr">
+            <div class="div-table-td">
+              <h5 class="grey-t text-uppercase">My Balance</h5>
+              <h4 class="black-t mb-0">Rs. {{walletbalance[0]}}</h4>
+            </div>
+
+            <div class="div-table-td text-right">
+              <button type="button" class="btn site-btn btn-sm" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false">
+                Add Money
+              </button>
+
+            </div>
+          </div>
+ 
+          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body white-box"> 
+          
+            <form #addMoneyFrom="ngForm" (ngSubmit)="initPay(addMoneyFrom)" role="form" class="line-form col-lg-4 col-md-6 col-sm-12" autocomplete="off">
+            <label>
+            <p class="label-txt">Enter Amount</p>
+            <span class="rs-span">Rs.{{useremail[0]}}</span>
+            <input type="number" [class.text-danger]="error.addmoney" class="input rs-amount" name="addmoney" id="addmoney" #addmoney="ngModel" ngModel={{addMoneyForm.addmoney}} pattern="[0-9]+" required>
+            <!-- <div class="line-box">
+            <div class="line"></div>
+            </div>
+            <span *ngIf="error.addmoney" class="help-block" [hidden]="!error.addmoney">
+            <strong class="text-danger">{{ error.addmoney }}</strong>
+            </span> -->
+            <input type="hidden" class="input rs-amount" name="useremail" id="useremail" #useremail="ngModel" ngModel={{useremail[0]}} >
+            <input type="hidden" class="input rs-amount" name="userphone" id="userphone" #userphone="ngModel" ngModel={{userphone[0]}}>
+            <input type="hidden" class="input rs-amount" name="userteamname" id="userteamname" #userteamname="ngModel" ngModel={{userteamname[0]}}>
+            <div class="line-box">
+            <div class="line"></div>
+            </div>
+            </label>
+            <div class="form-group">
+            
+            <div class="btn-group">
+                <button (click)="dynamicaddmoney(100)"  class="btn-sm btn-outline-secondary btn-light btn"  type="button"> <h5 class="mt-2">Rs.100</h5>
+                </button>
+                <button (click)="dynamicaddmoney(200)"  class="btn-sm btn-outline-secondary btn-light btn"  type="button"> <h5 class="mt-2">Rs.200</h5>
+                </button>
+                <button (click)="dynamicaddmoney(500)"  class="btn-sm btn-outline-secondary btn-light btn"  type="button"> <h5 class="mt-2">Rs.500</h5>
+                </button>
+                </div>
+            
+            </div>
+            
+            <!-- routerLink="/paymentmethod" (click)="initPay(addmoney.value)" -->
+            <button  class="subscribe btn site-btn btn-lg btn-block"  type="submit"> Confirm
+              </button>
+            </form>
+            </div>
+            <br> 
+            </div>
+          </div> 
+          <div *ngIf="mobileverify != 1 || emailverify != 1 || panverify != 1 || bankverify != 1" class="content-tr" >
+            <div class="div-table-td">
+              <h5 class="black-t">Account Verification</h5>
+              <div class="grey-t mb-0">Need Account Verification to If you withdraw of your won amount</div>
+            </div>
+
+            <div class="div-table-td text-right">
+              <a routerLink="/account-verify" class="btn outline-btn btn-sm">Verify Now</a>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row boxes"> 
+        <div class="col">
+          <div class="white-box">
+            <h6 class="grey-t  text-uppercase">Deposited</h6>
+            <h4 class="black-t">Rs. {{depositbalance[0]}}</h4>
+            <div class="grey-t s-t">This money cannot be withdrawn</div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="white-box">
+            <h6 class="grey-t  text-uppercase">Winnings</h6>
+            <h4 class="black-t ">Rs. {{winningbalance[0]}}</h4> 
+            <div class="grey-t s-t mb-2">Minimum amount you can withdraw Rs.200</div>
+            <a *ngIf="winningamt > 200" class="btn btn-sm site-btn text-uppercase"
+                routerLink="/withdraw">Withdraw Money</a>
+                <a *ngIf="winningamt <= 200" data-toggle="modal" data-target="#withdraw-alert-Modal" class="btn btn-sm site-btn text-uppercase"
+                routerLink="">Withdraw Money</a>
+          </div>
+        </div>
+        <div class="col">
+          <div class="white-box">
+            <h6 class="grey-t  text-uppercase">Bonus</h6>
+            <h4 class="black-t">Rs. {{bonusbalance[0]}}</h4>
+            <div class="grey-t s-t">Maximum usable cash bonus = 10% of entry</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</article>
+
+
+
+<!--add cash Modal -->
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-center" id="exampleModalLabel">Add Money</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="tab-pane fade active show" id="nav-tab-card">
+
+          <form #addMoneyFrom="ngForm" (ngSubmit)="initPay(addMoneyFrom)" role="form" class="line-form" autocomplete="off">
+            <label>
+              <p class="label-txt">Enter Amount</p>
+              <span class="rs-span">Rs.</span>
+              <input type="text" class="input rs-amount" name="addmoney" id="addmoney" #addmoney="ngModel" ngModel pattern="[0-9]+" required>
+              <div class="line-box">
+                <div class="line"></div>
+              </div>
+            </label>
+            <div class="form-group">
+              <div class="row boxes">
+                <div class="col">
+                  <div class="border-box text-center">
+                    <h5 class="mt-2">Rs.100</h5>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="border-box text-center">
+                    <h5 class="mt-2">Rs.200</h5>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="border-box text-center">
+                    <h5 class="mt-2">Rs.500</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+            // routerLink="/paymentmethod" (click)="initPay(addmoney.value)" 
+            <button  class="subscribe btn site-btn btn-lg btn-block"  type="submit"> Confirm
+            </button>
+          </form>          
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div> -->
+
+<!-- withdraw Modal -->
+<div class="modal fade" id="withdraw-alert-Modal" tabindex="-1" role="dialog"
+  aria-labelledby="withdraw-alert-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-center" id="exampleModalLabel">Win More to Withdraw</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="tab-pane fade active show" id="nav-tab-card">
+
+          <form role="form" class="line-form">
+            <p class="sing-content">Keep winning and withdraw your winnings once they exceed the minimum amount</p>
+
+            <button class="subscribe btn site-btn btn-lg btn-block" data-dismiss="modal" aria-label="Close"
+              type="button"> OK </button>             
+          </form>          
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<app-inner-footer></app-inner-footer>

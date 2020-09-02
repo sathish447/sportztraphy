@@ -1,0 +1,126 @@
+<app-header></app-header>
+<article>
+    <section class="entry-form">
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-md-10">
+                    <div class="form-box-whl">
+                        <div></div>
+                        <div class="form-box-bg">
+                            <div class="form-title">Register</div>
+ 
+                            <form #regFrom (ngSubmit)="onSubmit()" class="logfrm" autocomplete="off">
+                                <label [class.text-danger]="error.phone">
+                                    <p class="label-txt">Mobile No</p>
+                                    <input type="text" class="input" name="phone" [(ngModel)]="form.phone">
+
+                                    <div class="line-box">
+                                        <div class="line"></div>
+                                    </div>
+                                    <span *ngIf="error.phone" class="help-block" [hidden]="!error.phone">
+                                        <strong class="text-danger"> {{ error.phone }}</strong>
+                                    </span>
+                                </label>
+
+                                <label [class.text-danger]="error.email">
+                                    <p class="label-txt">Email</p>
+                                    <input type="text" class="input" name="email" [(ngModel)]="form.email">
+
+                                    <div class="line-box">
+                                        <div class="line"></div>
+                                    </div>
+                                    <span *ngIf="error.email" class="help-block" [hidden]="!error.email">
+                                        <strong class="text-danger"> {{ error.email }}</strong>
+                                    </span>
+                                </label>
+
+                                <label [class.text-danger]="error.password">
+                                    <p class="label-txt">Password</p>
+                                    <input type="password" class="input" name="password" [(ngModel)]="form.password">
+
+                                    <div class="line-box">
+                                        <div class="line"></div>
+                                    </div>
+
+                                    <span *ngIf="error.email" class="help-block" [hidden]="!error.password">
+                                        <strong class="text-danger"> {{ error.password }}</strong>
+                                    </span> 
+                                </label>
+                                <label [class.text-danger]="error.confirm_password">
+                                    <p class="label-txt">Confirm Password</p>
+                                    <input type="password" class="input" name="confirm_password" [(ngModel)]="form.confirm_password">
+
+                                    <div class="line-box">
+                                        <div class="line"></div>
+                                    </div>
+
+                                    <span *ngIf="error.confirm_password" class="help-block" [hidden]="!error.confirm_password">
+                                        <strong class="text-danger"> {{ error.confirm_password }}</strong>
+                                    </span> 
+
+                                </label>
+
+
+                                <label [class.text-danger]="error.referral">
+                                    <p class="label-txt">Referral Code (Optional)</p>
+                                    <input type="text" class="input" name="referral" [(ngModel)]="form.referral">
+
+                                    <div class="line-box">
+                                        <div class="line"></div>
+                                    </div>
+                                    <span *ngIf="error.referral" class="help-block" [hidden]="!error.referral">
+                                        <strong class="text-danger"> {{ error.referral }}</strong>
+                                    </span>
+                                </label>
+
+                                <button class="btn-block site-btn" type="submit">Register</button>
+
+
+                                <br />
+
+                                <!-- <div class="text-center small grey-t"> By registering, I agree to game's     <a href="#" class="site-link">T&Cs</a>
+                                </div> -->
+                            </form>
+
+                            <div class="form-box">
+                                <div class="text-center">
+                                    <h6 class="b-f grey-t">OR</h6>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-12">
+                                        <a (click)="login()" class="btn shadow-btn btn-block face-color"> <i
+                                                class="fa fa-facebook" aria-hidden="true"></i> facebook</a>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <button #gmailLoginRef 
+                                            class="btn shadow-btn btn-block goog-color"><i class="fa fa-google"
+                                                aria-hidden="true" #gmailLoginRef></i> Gmail</button>
+    
+                                    </div>
+                                </div>
+                                <br />
+                                <hr />
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-12">
+
+                                        <!-- <div class="text-left small grey-t"> Have a referral code? <br/><a href="#"
+                                                    class="site-link">Click here</a></div> -->
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+
+                                        <div class="text-right small grey-t">Already a user?<br /><a routerLink="/login"
+                                                class="site-link">Login</a></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</article>
+
+<app-footer class="home-footer"></app-footer>

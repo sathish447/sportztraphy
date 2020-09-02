@@ -1,0 +1,313 @@
+<app-inner-header></app-inner-header>
+<article class="full-page">
+<section>
+<div class="container page-container">
+
+<div class="page-center">
+<div class="row no-pad">
+<div class="col-md-6">
+<div  class="bottom-btn btns-whl">
+
+<button type="button" id="saveteam" disabled='disabled' class="btn green-btn text-uppercase link" (click)="saveTeam()">Save Team</button>
+<label  class="btn green-btn text-uppercase link v-map" for="openchart" >View Map</label></div>
+<div class="team-info">
+
+<div class="content-div-even white-box">
+<!--left-->
+<div  class="rank-price black-t text-left">Credits Left
+<div class="h4 white-t">{{ totalcredit }}</div>
+</div>
+<!--center-->
+<div class="rank-no  mb-0">
+<div class="content-div-even center-div-line">
+<div class="content-div-even">
+<div>  <img  src="assets/images/flag/{{team1_key}}.svg" style="
+width: 40px;
+/* padding: 5px; */
+margin: 5px;
+"></div>
+<div class="black-t text-uppercase">{{team1_key}}</div>
+<div class="h4 mb-0">  {{team1count}}</div></div>
+<div class="content-div-even">
+
+
+<div>  <img  src="assets/images/flag/{{team2_key}}.svg" style="
+width: 40px;
+/* padding: 5px; */
+margin: 5px;
+"></div>
+<div class="black-t text-uppercase">{{team2_key}}</div><div class="h4 mb-0">{{team2count}}</div></div>
+</div>
+</div>
+<!--right-->
+<div  class="rank-price black-t text-right">Players
+<div class="h5 white-t"><span class="h4 white-t">{{ playercount }}</span>/11</div>
+</div></div>
+</div> 
+<div class="tabs-whl players-tabs" id="accordionExample">
+
+<ul class="nav nav-tabs even-tabs white-tabs" id="myTab" role="tablist">
+<li class="nav-item">
+<a class="nav-link active h6" id="wk-tab" data-toggle="tab" href="#wk" role="tab"
+aria-controls="wk" aria-selected="true">WK({{markwkcount}})</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link h6" id="bat-tab" data-toggle="tab" href="#bat" role="tab"
+aria-controls="bat" aria-selected="false">BAT({{markbatcount}})</a>
+</li>
+<li class="nav-item">
+<a class="nav-link h6" id="ar-tab" data-toggle="tab" href="#ar" role="tab"
+aria-controls="ar" aria-selected="false">AR({{markarcount}})</a>
+</li>
+<li class="nav-item">
+<a class="nav-link h6" id="bowl-tab" data-toggle="tab" href="#bowl" role="tab"
+aria-controls="bowl" aria-selected="false">BOWL({{markbowlcount}})</a>
+</li>
+</ul>
+<div class="tab-content" id="myTabContent">
+<div class="tab-pane fade show active" id="wk" role="tabpanel" aria-labelledby="wk-tab">
+<div class="white-box">
+<table class="table site-table">
+<thead>
+<tr>
+<th colspan="2">Players</th>
+<th>Points</th>
+<th colspan="2">Credits</th>
+</tr>
+</thead>
+<tbody>
+<tr *ngFor="let kdetails of keeperplayerdetails; index as i" class="player-data-td" id="{{'wkplayer-data-td'+i}}">
+    <td class="player-pic"><img [class]="kdetails.playing_11 == 1 ? 'online-player' : ''" src="assets/images/players/{{kdetails.profile}}" data-target="#withdraw-alert-Modal" data-toggle="modal" (click)="getplayerdetail(kdetails.player_key)">
+        
+    </td>
+<td class="player-name h6">
+    <span *ngIf='kdetails.playing_11 == 1' class="s-t green-t"></span>
+    {{kdetails.name}}<br/>
+<span *ngIf="kdetails.team == 'team1'" class="grey-t s-t">WK - {{team1_key}}</span>
+<span *ngIf="kdetails.team == 'team2'" class="grey-t s-t">WK - {{team2_key}}</span>
+
+</td>
+<td>0</td>
+<td>{{kdetails.credit_value}}</td>
+<td class="last-info"> <div class="add-circle"> 
+<i _ngcontent-oir-c19=""
+class="material-icons icon-image-preview add_player" (click)="wkPlayeradd('wk',i,kdetails.name,kdetails.credit_value,kdetails.player_key,'wk',kdetails.player_team_name,kdetails.team)"
+> <div class="spinner"></div>
+add</i>
+<i 
+class="material-icons icon-image-preview remove-btn" (click)="wkPlayerremove('wk',i,kdetails.credit_value,kdetails.team,kdetails.name,kdetails.player_key)" > <div class="spinner"></div>
+remove</i>
+</div></td>
+</tr> 
+
+</tbody>
+</table>
+</div>
+</div>
+<div class="tab-pane fade" id="bat" role="tabpanel" aria-labelledby="bat-tab">
+<div class="white-box">
+<table class="table site-table">
+<thead>
+<tr>
+<th colspan="2">Players</th>
+<th>Points</th>
+<th colspan="2">Credits</th>
+</tr>
+</thead>
+<tbody>
+<tr *ngFor="let batdetails of batplayerdetails; index as i" id="{{'batplayer-data-td'+i}}"  class="player-data-td">
+<td class="player-pic"><img [class]="batdetails.playing_11 == 1 ? 'online-player' : ''" src="assets/images/players/{{batdetails.profile}}" data-target="#withdraw-alert-Modal" data-toggle="modal" (click)="getplayerdetail(batdetails.player_key)"></td>
+
+<td class="player-name h6">
+ <span *ngIf='batdetails.playing_11 == 1' class="green-t"></span><br/>
+    {{batdetails.name}}<br/>
+
+<span *ngIf="batdetails.team == 'team1'" class="grey-t s-t">BAT - {{team1_key}}</span>
+<span *ngIf="batdetails.team == 'team2'" class="grey-t s-t">BAT - {{team2_key}}</span>
+</td>
+<td>0</td>
+<td>{{batdetails.credit_value}}</td>
+<td class="last-info"> <div class="add-circle">
+<i _ngcontent-oir-c19=""
+class="material-icons icon-image-preview add_player" (click)="batPlayeradd('bat',i,batdetails.name,batdetails.credit_value,batdetails.player_key,'bat',batdetails.player_team_name,batdetails.team)"><div class="spinner"></div>
+add</i>
+<i 
+class="material-icons icon-image-preview remove-btn" (click)="batPlayerremove('bat',i,batdetails.credit_value,batdetails.team,batdetails.name,batdetails.player_key)"><div class="spinner"></div>
+remove</i>                    
+</div></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+</div>
+<div class="tab-pane fade" id="ar" role="tabpanel" aria-labelledby="ar-tab">
+<div class="white-box">
+<table class="table site-table">
+<thead>
+<tr>
+<th colspan="2">Players</th>
+<th>Points</th>
+<th colspan="2">Credits</th>
+</tr>
+</thead>
+<tbody>
+<tr *ngFor="let ardetails of alplayerdetails; index as i" id="{{'arplayer-data-td'+i}}" class="player-data-td">
+<td class="player-pic"><img [class]="ardetails.playing_11 == 1 ? 'online-player' : ''" src="assets/images/players/{{ardetails.profile}}" data-target="#withdraw-alert-Modal" data-toggle="modal" (click)="getplayerdetail(ardetails.player_key)"></td>
+
+<td class="player-name h6">
+    <span *ngIf='ardetails.playing_11 == 1' class="green-t"></span><br/>
+    {{ardetails.name}}<br/>
+<span *ngIf="ardetails.team == 'team1'" class="grey-t s-t">AR - {{team1_key}}</span>
+<span *ngIf="ardetails.team == 'team2'" class="grey-t s-t">AR - {{team2_key}}</span>
+</td>
+<td>0</td>
+<td>{{ardetails.credit_value}}</td>
+<td class="last-info"> <div class="add-circle">
+<i _ngcontent-oir-c19=""
+class="material-icons icon-image-preview add_player" (click)="arPlayeradd('ar',i,ardetails.name,ardetails.credit_value,ardetails.player_key,'ar',ardetails.player_team_name,ardetails.team)"><div class="spinner"></div>
+add</i>
+<i 
+class="material-icons icon-image-preview remove-btn" (click)="arPlayerremove('ar',i,ardetails.credit_value,ardetails.team,ardetails.name,ardetails.player_key)"><div class="spinner"></div>
+remove</i>
+
+
+</div></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+</div>
+<div class="tab-pane fade" id="bowl" role="tabpanel" aria-labelledby="bowl-tab">
+<div class="white-box">
+<table class="table site-table">
+<thead>
+<tr>
+<th colspan="2">Players</th>
+<th>Points</th>
+<th colspan="2">Credits</th>
+</tr>
+</thead>
+<tbody>
+<tr *ngFor="let bowldetails of bowlplayerdetails; index as i" id="{{'bowlplayer-data-td'+i}}"   class="player-data-td">
+<td class="player-pic"><img [class]="bowldetails.playing_11 == 1 ? 'online-player' : ''" src="assets/images/players/{{bowldetails.profile}}"  data-target="#withdraw-alert-Modal" data-toggle="modal" (click)="getplayerdetail(bowldetails.player_key)"></td>
+
+<td class="player-name h6">
+    <span *ngIf='bowldetails.playing_11 == 1' class="green-t"></span><br/>
+    {{bowldetails.name}}<br/>
+<span *ngIf="bowldetails.team == 'team1'" class="grey-t s-t">BOWL - {{team1_key}}</span>
+<span *ngIf="bowldetails.team == 'team2'" class="grey-t s-t">BOWL - {{team2_key}}</span>
+</td>
+<td>0</td>
+<td>{{bowldetails.credit_value}}</td>
+<td class="last-info"> <div class="add-circle">
+<i _ngcontent-oir-c19=""
+class="material-icons icon-image-preview add_player" (click)="bowlPlayeradd('bowl',i,bowldetails.name,bowldetails.credit_value,bowldetails.player_key,'bowl',bowldetails.player_team_name,bowldetails.team)"><div class="spinner"></div>
+add</i>
+<i 
+class="material-icons icon-image-preview remove-btn" (click)="bowlPlayerremove('bowl',i,bowldetails.credit_value,bowldetails.team,bowldetails.name,bowldetails.player_key)"><div class="spinner"></div>
+remove</i>
+</div></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div></div>
+<div class="col-md-6 col-sm-12 ground-map-whl">
+<input type="checkbox" class="openSidebarMenu" id="openchart">
+
+<div class="ground-map-wrapper">
+<div  class="bottom-btn btns-whl"><label  class="btn green-btn text-uppercase link" for="openchart" >Back</label></div>
+<div class="ground-map-inner">
+<div class="whl-players">
+<div class="whl-players-wrapper">
+<div class="text-center players-title">Wicket-Keepers</div>
+<div id="wk-players"></div>
+</div>
+<div class="whl-players-wrapper">
+<div class="text-center players-title">Batsmen</div>
+<div id="bat-players"></div>
+</div>
+<div class="whl-players-wrapper">
+<div class="text-center players-title">All-Rounders</div>
+<div id="ar-players"></div>
+</div>
+<div class="whl-players-wrapper">
+<div class="text-center players-title">Bowlers</div>
+<div id="bowl-players"></div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</article>
+
+<!-- profile Modal -->
+<div class="modal fade" id="withdraw-alert-Modal" tabindex="-1" role="dialog" aria-labelledby="withdraw-alert-ModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+    <div class="modal-header">
+    <h5 class="modal-title text-center" id="exampleModalLabel">{{playername}}</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+        <table class="player-info-table">
+            <tbody>        
+                <tr class="player-bg">
+                    <td colspan="5"  id="open-1">
+                        <table width="100%">
+                            <tr>
+                                <td><span class="h5">{{playercredit}}</span><br/>
+                                    <span class="grey-t s-t">Credits</span></td>
+                                <td><span class="h5">{{playertotalpoints}}</span><br/>
+                                    <span class="grey-t s-t">Total Points</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="h6">{{playerbatting_style}}</span><br/>
+                                    <span class="grey-t s-t">BATS</span></td> 
+                                <td><span class="h6">{{playerbowling_style}}</span><br/>
+                                    <span class="grey-t s-t">BOWLS</span></td>
+                            </tr>
+                            <tr>
+                                <td conspan="2"><span class="h6">{{playernationality}}</span><br/>
+                                    <span class="grey-t s-t">Teams</span></td>
+                                <!-- <td><span class="h6">{{playerdob}}</span><br/>
+                                    <span class="grey-t s-t">Birthday</span></td> -->
+                            </tr>
+                        </table>
+                        <div class="player-match-points">
+                        <div class="sec-2-div">
+                            <div><span class="h6">{{short_name}}</span><br/>
+                                <span class="grey-t s-t">Dec 20, 2019</span></div>
+                            <div class="text-right"><span class="h6">{{player_percent}}%</span><br/>
+                                <span class="grey-t s-t">Selected by</span></div>
+                        </div>
+                        <div class="sec-2-div">
+                            <div><span class="h6">9.5</span><br/>
+                                <span class="grey-t s-t">points</span></div>
+                            <div class="text-right"><span class="h6">{{playertotalpoints}}</span><br/>
+                                <span class="grey-t s-t">Credits</span></div>
+                        </div>
+                    </div>
+                    </td>
+                </tr>
+        
+            </tbody>
+        </table>
+    </div>
+    </div>
+    </div>
+    </div>

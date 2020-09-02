@@ -1,0 +1,63 @@
+<app-inner-header></app-inner-header>
+<article>
+    <section class="content-section content-boxes">
+        <div class="container">
+            <div class="title-box">
+                <div class="black-bg-box">
+                    <div class="row">
+                        <div class="col mid-table">
+                            <div class="icon"><img src="assets/images/user-pic.svg" /></div>
+                            <div class="title-name"><span class="title-content">My Ranks</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="div-table-whl" id="accordion">
+                <table class="table  site-table data-td-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Date</th>
+                            <th scope="col">Match Name</th>
+                            <th scope="col">Winning Amount</th>
+
+                            <th scope="col">Rank</th>
+                            <th scope="col">Fantasy Points</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                       
+                        <tr *ngFor="let detail of collection.data | paginate: config">
+                            <td data-label="Date">{{detail.date}}<br />
+                                <span class="s-t grey-t">{{detail.time}}</span>
+                            </td>
+                            <td data-label="Transaction ID">{{detail.match_name?detail.match_name:'-'}}</td>
+                            <td data-label="Transaction ID">
+                                {{detail.price_winning_amount?detail.price_winning_amount:'-'}}</td>
+                            <td data-label="Transaction ID">{{detail.rank?detail.rank:'-'}}</td>
+                            <td data-label="Transaction ID">{{detail.fantasy_points?detail.fantasy_points:'-'}}</td>
+                        </tr>
+                        <tr *ngIf="totalItems == 0">
+                            <td class="div-table-td join-link text-uppercase s-t "  [attr.colspan]="5">No Records Found</td>                            
+                        </tr>
+                    </tbody>                 
+                </table>
+                <div *ngIf="totalItems > 10">
+                    <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+                </div>
+
+
+
+            </div>
+
+        </div>
+    </section>
+</article>
+
+
+
+
+
+<app-inner-footer></app-inner-footer>

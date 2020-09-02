@@ -1,0 +1,173 @@
+<app-inner-header></app-inner-header>
+<article>
+
+    <section class="tab-whl sticky-header without-banner">
+        <div class="container">
+            <div class="top-menu-link link" routerLink="/contests"></div>
+            <div class="div-table-tr">
+                <div class="div-table-td text-uppercase left-title">
+                    <h5 class="mb-0">Contests</h5>
+                </div>
+                <div class="div-table-td country-name text-uppercase">{{team1_key}}<span
+                        class="grey-t">VS</span>{{team2_key}}</div>
+                <div class="div-table-td flag-name">
+                    <div class="flags-whl">
+                        <span class="flag-pic-s"><img src="assets/images/flag/{{team1_key}}.svg" /></span>
+                        <span class="trophy-pic"><img src="assets/images/tropy1.svg" /></span>
+                        <span class="flag-pic"><img src="assets/images/flag/{{team2_key}}.svg" /></span>
+                    </div>
+                </div>
+                <div class="div-table-td grey-t s-t text-uppercase text-center">{{time_left}}</div>
+                <!-- <div class="div-table-td more-link text-uppercase s-t">More info</div> -->
+            </div>
+
+        </div>
+    </section>
+
+    <section class="sec-pad content-section contest-list mylist">
+
+        <div class="container">
+            <div class="sti cky-header top-btn btns-whl"
+                [style.display]="time_left == 'completed' || time_left == 'started' ?'none':'block' ">
+                <a class="btn green-btn text-uppercase " routerLink="/create-contest">Create Contest</a>
+
+            </div>
+
+            <!--list of contests-->
+            <div *ngIf="user_contest_count > 0">
+
+                <div *ngFor="let detail of usercontestdetails; index as i">
+                    <div class="title-box sticky-header">
+                        <div class="black-bg-box">
+                            <div class="row">
+                                <div class="col mid-table">
+                                    <div class="icon"><img src="assets/images/contest-star.svg"></div>
+                                    <div class="title-name"><span
+                                            class="title-content">{{detail.contests.category.cat_name}}</span></div>
+                                    <div class="col align-self-center white-t">Get ready for mega winnings!</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="div-table-whl">
+                        <div class="div-table-wrapper">
+                            <div class="div-table-tr">
+
+                                <div class="div-table-td Price-amount s-t  grey-t"
+                                    routerLink="/contest-info/{{matchkey}}/{{detail.contest_id}}/{{authid}}">
+                                    <h5 class="black-t mb-0">Rs.{{detail.contests.prize_pool}}</h5>Prize Pool
+                                </div>
+                                <div class="div-table-td contest-progress-bar-whl"
+                                    routerLink="/contest-info/{{matchkey}}/{{detail.contest_id}}/{{authid}}">
+                                    <div class="contest-progress-bar">
+                                        <div class="progress-bar-inner">
+                                            <div class="progress-bar-level" [style.width.%]="detail.contests.range">
+                                            </div>
+                                        </div>
+                                        <div class="row align-items-center s-t grey-t">
+
+                                            <div class="col">
+                                                {{detail.contests.total_contest}} spots left
+                                            </div>
+                                            <div class="col text-right">
+                                                {{detail.contests.contest_size}} spots
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="div-table-td fee-link text-right text-uppercase s-t">
+                                    &nbsp;
+                                </div>
+
+                                <div class="div-table-td fee-link fee-btn text-right green-t text-uppercase s-t">
+                                    <span class="btn-sm btn btn-secondary">{{detail.text_status}}</span>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- Multiple Team Status -->
+                    <div class="modal fade" id="teams-alert-Modal" tabindex="-1" role="dialog"
+                        aria-labelledby="withdraw-alert-ModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title text-center" id="exampleModalLabel">Please choose your team
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body team-table-content">
+                                    <div class="tab-pane fade active show" id="nav-tab-card">
+
+                                        <form role="form" class="line-form">
+                                            <div *ngFor="let details of teamdetails; index as i">
+                                                <table class="team-table">
+                                                    <tr>
+                                                        <td><input type="radio" name="Teams" value="{{details.teamid}}"
+                                                                (click)="feesDetails(entry_fees,cat_id,details.teamid)">
+                                                            <span class="h6 black-t">Teams</span> </td>
+                                                        <td>{{details.caption}}<br /><span
+                                                                class="grey-t s-t">Captain</span></td>
+                                                        <td>{{details.v_caption}}<br /><span class="grey-t s-t">Vice
+                                                                Captain</span></td>
+                                                        <td style="text-align:right"><a
+                                                                routerLink="/viewteam/{{matchkey}}/"
+                                                                class="btn btn-sm stie-btn">Preview</a></td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            <div class="text-center">
+                                                <a class="subscribe btn site-btn btn-lg col-md-3 col-sm-12"
+                                                    data-dismiss="modal" aria-label="Close" data-toggle="modal"
+                                                    data-target="#teams-alert-Modal"
+                                                    (click)="joinContest(entry_fees,cat_id,team_id)"> Join Contest </a>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="user_contest_count == 0" class="div-table-tr m-height">
+                <div class="div-table-td text-center text-uppercase s-t">You are not joined any contest.</div>
+            </div>
+
+        </div>
+    </section>
+</article>
+
+<!-- Joined Status -->
+<div class="modal fade" id="withdraw-alert-Modal" tabindex="-1" role="dialog"
+    aria-labelledby="withdraw-alert-ModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="exampleModalLabel">First things First</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="tab-pane fade active show" id="nav-tab-card">
+
+                    <form role="form" class="line-form">
+                        <p class="sing-content">This Contest Already Joined.</p>
+
+                        <button class="subscribe btn site-btn btn-lg btn-block" data-dismiss="modal" aria-label="Close"
+                            type="button"> Join Contest </button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<app-inner-footer></app-inner-footer>

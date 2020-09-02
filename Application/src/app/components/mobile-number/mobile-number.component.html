@@ -1,0 +1,34 @@
+<app-header></app-header>
+<article>
+    <section class="entry-form">
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-md-10">
+                    <div class="form-box-whl">
+                        <div></div>
+                        <div class="form-box-bg">
+                            <div class="form-title">Mobile Number</div>
+                            <form #numberForm="ngForm" (ngSubmit)="onSubmit(numberForm)" class="logfrm"  autocomplete="off">
+
+                                <label [class.text-danger]="error.phone"> 
+                                    <p class="label-txt">Enter Mobile Number</p>
+                                    <input type="text" class="input" name="phone" #phone="ngModel" ngModel pattern="[0-9]+" required>
+                                    <div class="line-box">
+                                        <div class="line"></div>
+                                    </div>
+                                    <span class="help-block" [hidden]="!error.phone">
+                                        <strong class="text-danger"> {{ error.phone }}</strong>
+                                    </span>
+                                </label>
+                                <br />
+                                <button class="green_btn btn-block site-btn" type="submit">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</article>
+
+<app-footer class="home-footer"></app-footer>

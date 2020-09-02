@@ -1,0 +1,542 @@
+.navbar-brand img
+{
+	width:150px;
+}
+.dark-blue{
+	background-color:#0f1139 !important;
+}
+.header::after
+{
+	
+}
+.stempbg .mask
+{
+	background-image:url(../img/theme/stemp.jpg) !important;
+	background-size:cover !important;
+	opacity:0.2 !important;
+	background-position:center center !important;
+}
+.header-icon
+{
+    width: 100%;
+    max-width: 70px;
+}
+.table-content{
+	display:table;
+	width:100%;
+}
+.table-content > div {
+    display: table-cell;
+    vertical-align: middle;
+}
+.line-bottom .col {
+    padding-right: 0;
+    border-bottom: 1px solid #e2e2e2;
+	padding-bottom: 15px;
+}
+.line-bottom .row .col:first-child {
+    padding-left: 0;
+    padding-right: 14px;
+    border-right: 1px solid #e2e2e2;
+}
+.info-span
+{
+    position: relative;
+    top: -8px;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #8e949b;
+    font-weight: 600;
+}
+.m-icon img{
+    width: 39px;
+}
+#myChart-license-text
+{
+	display:none;
+}
+.login-logo
+{
+	width:150px;
+}
+.my-tab li a.active
+{
+	border-bottom:3px solid #5e72e4;
+	color:#5e72e4;
+}
+.my-tab li a
+{
+    border-bottom: 3px solid #dfddff;
+    color: #a39fdd;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 16px;
+}
+.team-div {
+    padding: 0px !important;
+	border:0px !important;
+}
+tr.captain .player-pic, tr.vcaptain .player-pic
+{
+position:relative;
+}
+tr.captain .player-pic::before {
+    content: "C";
+    position: absolute;
+    background: #ffa433;
+    border-radius: 15px;
+    padding: 3px;
+    width: 20px;
+    height: 20px;
+    line-height: 11px;
+    top: 6px;
+    right: -1px;
+    font-weight: 700;
+    text-align:center;
+}
+
+tr.vcaptain .player-pic::before {
+position: absolute;
+background: #4964f9;
+border-radius: 15px;
+padding: 3px;
+width: 20px;
+height: 20px;
+line-height: 11px;
+top: 6px;
+right: -1px;
+font-size: 12px;
+content: "VC";
+font-weight: 700;
+text-align:center;
+}
+.v-ground
+{
+    
+    background-image: url(../img/v-ground.png);
+    background-size: 100%;
+    background-position: center center;
+	background-color: #20430a;
+}
+.team-div table.select-table-player tr > td 
+{
+	vertical-align:top;
+}
+.select-table-player
+{
+    width:100%;
+}
+.select-table-player td{
+    text-align: left;
+    padding: 10px 5px;
+	color:#fff;
+}
+.select-table-player h5
+{
+    color: #70e640;
+}
+.div-input
+{
+	width:100%;
+	
+}
+/*.editor
+{
+    width:390px;
+    
+}*/
+
+ .select-table-player
+{
+width:100%;
+}
+.select-table-player td{
+text-align: left;
+padding: 10px 5px;
+vertical-align:top;
+}
+.select-table-player h6
+{
+color: #70e640;
+}
+.select-table-player .grey-t {
+color: rgba(255, 255, 255, 0.7098039215686275);
+}
+td.player-pic.captain::before {
+content: "C";
+position: absolute;
+background: #ff9933;
+border-radius: 15px;
+padding: 3px;
+width: 20px;
+height: 20px;
+line-height: 11px;
+top: 6px;
+right: -1px;
+}
+td.player-pic.vcaptain::before {
+
+position: absolute;
+background: #3F51B5;
+border-radius: 15px;
+padding: 3px;
+width: 20px;
+height: 20px;
+line-height: 11px;
+top: 6px;
+right: -1px;
+font-size: 12px;
+content: "VC";
+font-weight: 700;
+}
+
+.bigmodal{
+	max-width: 1170px !important;
+}
+
+ button.search-btn
+{
+border-radius: 40px;
+    width: 40px;
+    height: 40px;
+    margin-right: 2px;
+    margin: 3px;
+    background-color: transparent;
+    padding: 10px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 15px;
+    border: 0px;
+}	
+button.search-btn:hover {
+    background-color: #fff !important;
+    color: #f49049 !important;
+    font-size: 17px !important;
+    padding: 5px !important;
+}
+.excellistf
+{
+float: right;
+    position: absolute;
+    top: 0px;
+    margin-top: -12px;
+    right: 16px;
+}
+.excellistf li {
+    list-style: none;
+    margin-right: 8px;
+    margin-bottom: 6px;
+}
+.excellistf li a
+{
+min-width:60px;
+}
+.modaldatabg table tr td
+{
+    padding: 10px 17px;
+}
+.modaldatabg .modal-body
+{
+    padding: 13px 16px;
+}
+.modaldatabg .modal-title
+{
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #5e72e4;
+}
+.scroll-databox
+{
+    max-height:450px;
+    overflow: auto;
+}
+.modaldatabg table tr:nth-child(odd) 
+{
+    background: #fff;
+}
+.modaldatabg table tr:nth-child(even) 
+{
+    background: #f1f5f9;
+}
+.padding-0
+{
+    padding:0px !important;
+}
+.pricerangeboxbg
+{
+    position: relative;
+    width:100%;
+}
+.pricerangeboxbg .add_rannge_btn
+{
+    position: absolute;
+    bottom: 0px;
+    right: 21px;
+    margin-bottom: 19px;
+}
+.pricerangeboxbg .add_rannge_btn .btn
+{
+    border-radius: 50px;
+    width: 35px;
+    height: 35px;
+    padding: 0px;
+    font-size: 22px;
+}
+.price-box .row
+{
+    margin-bottom: 18px;
+}
+.labelt
+{
+    color: #525f7f;
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding-bottom:7px;
+}
+.userstabsbg .my-tab li a, .subtabbgrow li a
+{
+    font-size: 15px;
+    font-weight: 600;
+}
+.subtabbgrow
+{
+    width: 100%;
+    max-width: 85%;
+    margin: 0px auto;
+    background: #e2e4ff;
+    padding: 0px 17px;
+}
+.subtabbgrow li a {   
+    padding: 11px 10px;
+    border-bottom-color: transparent;
+}
+.price-box .row .col-md-4
+{
+    padding: 0px 10px;
+}
+.price-box .row>div:first-child
+{
+    padding-left:0px;
+}
+
+@media (max-width:575px)
+{
+    .price-box .row .col-md-4 {
+        padding: 5px 0px;
+    }
+    .pricerangeboxbg .add_rannge_btn
+    {
+    right:0px;
+    }
+}
+
+.cwidth-325box
+{
+    width: 325px; 
+}
+.cwidth-200box
+{
+    width:200px; 
+}
+.wraptextbg
+{
+    white-space: initial;
+    word-break: break-word;
+}
+.userstabsbg
+{
+    padding-top:0px;
+}
+.subtabbg
+{
+    padding-top: 39px;
+}
+
+.modalground .modal-dialog 
+{
+max-width:80%;
+}
+.modalground table tr:nth-child(odd), .modalground table tr:nth-child(even)
+{
+    background:none;
+}
+.modalground .modal-body
+{
+    margin: 18px 19px;
+}
+.cardpricebox>div {
+    margin: 10px 5px;
+    width: 100%;
+    flex: 100%;
+    display: inline-grid;
+    padding: 0px;
+}
+.cardpricebox
+{
+flex-wrap: inherit;
+}
+.cardpricebox .card-body
+{
+    padding: 16px 16px;
+}
+.cardpricebox .col-auto
+{
+    width: 80px;
+}
+.livepricerowbg h1
+{
+    font-size: 24px;
+}
+.navbar-search input:hover
+{
+	background-color: transparent !important;
+	color:#fff !important;
+}
+.v-ground table
+{
+    background-color: transparent !important;
+}
+@media (max-width:1350px)
+{
+    .overviewchartbg
+    {
+        flex:60%;
+        max-width:60%;
+    }
+    .overviewchartbg1
+    {
+        flex:40%;
+        max-width:40%;
+    }
+}
+
+@media (max-width:1200px)
+{
+    .cardpricebox
+    {
+        flex-wrap: wrap;
+    }
+    .cardpricebox>div
+    {
+        width: 46%;
+        flex: 46%;
+    }
+    .overviewchartbg
+    {
+        flex:100%;
+        max-width:100%;
+    }
+    .overviewchartbg1
+    {
+        flex:100%;
+        max-width:100%;
+    }
+}
+
+@media (max-width:1150px)
+{
+    .form-group label
+    {
+        width: 30%;
+        flex: 30%;
+        max-width:30%;
+    }
+}
+@media (max-width:991px)
+{
+    .cardpricebox>div
+    {
+        width: 100%;
+        flex: 100%;
+        margin:10px 0px;
+    }
+    
+    .subtabbgrow
+    {
+        max-width:100%;
+    }
+    .userstabsbg .my-tab li a, .subtabbgrow li a
+    {
+        font-size: 14px;
+    }
+    .my-tab li a
+    {
+        padding: 10px 15px;
+        margin-bottom: 0px !important;
+    } 
+}
+
+@media (max-width:850px)
+{
+    .form-group 
+    {
+        margin-bottom: 7px;
+    }
+    .div-input
+    {
+        width:100%;
+        padding: 0px 15px;
+    }
+    .form-group label
+    {
+        width: 100%;
+        flex: 100%;
+        max-width:100%;
+    }
+}
+
+@media (max-width:767px)
+{
+    .cardpricebox>div
+    {        
+        margin:10px 10px;
+    }
+    .subtabbgrow li a
+    {
+        border-bottom: 1px solid #acb0d9;
+    }   
+}
+
+@media (max-width:550px)
+{
+    .navbar-brand img
+    {
+        width: 116px;
+    }
+    .cardpricebox .col-auto 
+    {
+        width: 68px;
+    }
+    .livepricerowbg>div
+    {
+        width:100%;
+        padding: 10px 10px !important;
+    }
+    .livepricerowbg
+    {
+        display: block;
+    }
+    .livepricerowbg .col:first-child
+    {
+      border-right:0px !important;
+    }
+    .profilerightboxbg .text-right
+    {
+        text-align: left !important;
+    width: 100%;
+    max-width: 100%;
+    flex: 100%;
+    display: inline-block;
+    }
+    .excellistf 
+    {
+        float: left;
+        position: relative;
+        margin-top:0px;
+        right: inherit;
+        left: 0px;
+        margin-left: 0px;
+        padding-left:0px;
+        margin-bottom: 0px;
+    }
+}
+

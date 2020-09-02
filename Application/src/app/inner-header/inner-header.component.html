@@ -1,0 +1,39 @@
+<nav class="navbar menu-top-main sticky-header">
+  <div class="container">
+    <div class="menu-top-whl"> 
+    <div class="menu-top-section"> 
+      <div class="menu-left">
+        <span *ngIf="urlstatus == 1">
+          <i class="material-icons icon-image-preview link" (click)="backClicked()">arrow_back</i>
+        </span>
+        
+      </div>
+      <div class="menu-center"><a class="navbar-brand" href="#"><img src="assets/images/logo.svg" /></a></div>
+      <div class="menu-right"><label for="openSidebarMenu" class="sidebarIconToggle mb-0">
+          <div class="profile"><i class="material-icons icon-image-preview">menu</i></div>
+           </label></div>
+    </div>
+    </div>
+
+  <div class="sidemenuheadbg">
+      <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
+      
+    <div id="sidebarMenu" class="sidebarMenu">
+          <label for="openSidebarMenu" class="sidebarIconToggle mb-0 grey-t">
+           <div class="profile"><i  class="material-icons icon-image-preview">close</i></div>
+           </label>
+      <ul class="sidebarMenuInner">			
+        <li><a routerLink="/allmatch">All Matches</a></li>
+        <li><a routerLink="/mymatch">My Matches<span class="pull-right"> ({{matchcount}}) </span></a></li>
+        <li><a href="/myrank">My Ranks</a></li>
+        <li><a routerLink="/myaccount">My Account</a></li>
+        <li><a routerLink="/transactions">My Transactions</a></li>
+        <li><a href="/personalinfo">Personal Info</a></li>
+        <li><a routerLink="/pointsystem">Point System</a></li>
+        <li><a href="/changepassword">Change Password</a></li>
+        <li><span class="logout-btn" (click)="logout($event)">Log out</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+</nav>

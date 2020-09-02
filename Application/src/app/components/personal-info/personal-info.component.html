@@ -1,0 +1,151 @@
+<app-inner-header></app-inner-header>
+<article>
+    <section class="sec-pad content-section contest-list">
+        <div class="container">
+            <div class="row boxes"> 
+                <div class="col col-md-5">
+                <div class="white-box">
+                <div class="form-box-bg">
+                <div class="form-title">Personal Info</div>
+                <form #personalinfoFrom="ngForm" (ngSubmit)="onSubmit(personalinfoFrom)" autocomplete="off">
+                    <label>
+                        <p class="label-txt">Team Name</p>
+                        <input type="text" class="input" name="teamname" value="{{teamname}}" readonly>
+                        <div class="line-box">
+                            <div class="line"></div>
+                        </div> 
+                    </label>
+                    <label [class.text-danger]="error.name"> 
+                        <p class="label-txt">Full Name</p>
+                        <input type="text" class="input" name="name" #name="ngModel" ngModel="{{profileinfoForm.name}}" required>
+                        <div class="line-box">
+                            <div class="line"></div>
+                        </div>
+                        <span *ngIf="error.name" class="help-block" [hidden]="!error.name">
+                            <strong class="text-danger"> {{ error.name }}</strong>
+                        </span>
+                    </label>
+                    <label>
+                        <p class="label-txt">Email</p>
+                        <input type="text" class="input" name="email" value="{{user_email}}" readonly>
+                        <div class="line-box">
+                            <div class="line"></div>
+                        </div>
+                    </label>
+
+                    <label [class.text-danger]="error.dob">
+                        <p class="label-txt">Date of Birth<span class="star">*</span></p>
+                        <input type="text" class="input" name="dob" #dob="ngModel" ngModel="{{profileinfoForm.dob}}" required
+                            [bsConfig]="{containerClass:'theme-default'}" #dob_pan="bsDatepicker" bsDatepicker>
+                        <div class="line-box">
+                            <div class="line"></div>
+                        </div>
+                        <span *ngIf="error.dob" class="help-block" [hidden]="!error.dob">
+                            <strong class="text-danger"> {{ error.dob }}</strong>
+                        </span>
+                    </label>
+
+                    <label [class.text-danger]="error.state">
+                        <p class="label-txt">State of Residence</p>
+                        <input type="text" class="input" name="state" #state="ngModel" ngModel="{{profileinfoForm.state}}" required>
+                        <span *ngIf="error.state" class="help-block" [hidden]="!error.state">
+                            <strong class="text-danger"> {{ error.state }}</strong>
+                        </span>
+                        <div class="line-box">
+                            <div class="line"></div>
+                        </div>
+                    </label>
+                    <label>
+                        <p class="label-txt">Referal Code</p>
+                        <input type="text" class="input" name="referral" value="{{invitecode}}" readonly>
+                        <div class="line-box">
+                            <div class="line"></div>
+                        </div>
+                    </label>
+                    <button class="btn-block site-btn" type="submit">Save</button> 
+                </form></div>
+                </div></div><div class="col col-md-7"><div class="white-box">
+                    
+                    <div _ngcontent-tga-c2="" class="form-title text-center">Invite Friends</div>
+                        <div class="col">
+                            <form #invite_friends="ngForm" (ngSubmit)="invitefriends(invite_friends,invitecode,user_name)" autocomplete="off" class="invite-form">
+                                <div class="white-box friend-email">
+                                <label [class.text-danger]="error.email">
+                                    <p class="label-txt">Email</p>
+                                    <input type="text" class="input" name="invite_email" #invite_email="ngModel" ngModel="" required>
+                                    <div class="line-box">
+                                        <div class="line"></div>
+                                    </div>
+                                    <span *ngIf="error.email" class="help-block" [hidden]="!error.email">
+                                        <strong class="text-danger"> {{ error.email }}</strong>
+                                    </span>
+                                </label>
+                                </div>
+                                <button class="btn btn-sm site-btn text-uppercase" type="submit">Invite</button>
+
+                            </form>
+                        </div>
+                    <div class="row invite-form-whl">
+                        <form #profile_upload="ngForm" (ngSubmit)="profileupload(profile_upload)" autocomplete="off">
+
+                            <div class="col text-center user-pic-whl" *ngIf="image != ''">
+                                <div class="user-pic">
+                                    <div class="user-circle">
+                                        <label class="" for="file-upload">
+                                            <img  [src]="profiledoc !='' ? profiledoc : image" />
+                                            
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="custom-file-upload">
+                                <input id="file-upload" type="file" #upload_profile_image="ngModel" class="custom-file-upload1 btn grey-btn btn-block"  name="upload_profile_image" ngModel="{{image}}" (change)="profile_image($event);">
+                            </div>
+                            <div class="col text-center user-pic-whl" *ngIf="image === ''">
+                                <div class="user-pic">
+                                    <div class="user-circle">
+                                    <label class="" for="file-upload">
+
+                                        <img  [src]="profiledoc !='' ? profiledoc : 'assets/images/player.svg'" />
+                                        <span class="edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>  
+                                        </label>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="custom-file-upload">
+                                <input id="file-upload" type="file" #upload_profile_image="ngModel" class="custom-file-upload btn grey-btn btn-block"  name="upload_profile_image" ngModel="{{image}}" (change)="profile_image($event);">
+                            </div>
+                            <div class="text-center center-btn-whl">
+                            <button class="btn btn-sm site-btn text-uppercase" type="submit">Save Image</button></div>
+
+                        </form>
+                    </div>
+                        
+            
+                <div class="row"> 
+                        <div class="col s-border-box text-center text-uppercase h6 b-f
+                "><img class="me-icon" src="assets/images/wins-icon.svg" /><br/>Wins <br>
+                <span class="orange-t h4">{{wins}}</span></div>
+                        <div class="col s-border-box text-center text-uppercase h6 b-f
+                "><img class="me-icon" src="assets/images/matches-icon.svg" /><br/>Matches <br>
+                <span class="orange-t h4">{{matches}}</span></div>
+                    </div>
+                <div class="row">
+                        <div class="col s-border-box text-center text-uppercase h6 b-f
+                "><img class="me-icon" src="assets/images/contest-icon.svg" /><br/>Contests<br>
+                <span class="orange-t h4">{{contests}}</span></div>
+                        <div class="col s-border-box text-center text-uppercase h6 b-f
+                "><img class="me-icon" src="assets/images/series-icon.svg" /><br/>Series<br>
+                <span class="orange-t h4">{{series}}</span>
+                </div>
+                </div>
+                
+               
+           
+                </div>
+            </div>
+        </div>
+</div>
+    </section>
+</article>
+<app-inner-footer></app-inner-footer>

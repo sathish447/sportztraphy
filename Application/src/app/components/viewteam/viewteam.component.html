@@ -1,0 +1,132 @@
+<app-inner-header></app-inner-header>
+<article class="full-page">
+<section>
+<div class="container page-container">
+
+<div class="page-center">
+<div class="row no-pad">
+
+<div class="col-md-6">
+
+<div  class="bottom-btn btns-whl">
+        <a class="btn green-btn text-uppercase " routerLink="/team-create/{{matchkey}}/">Create Team</a>
+    </div>
+<div class="team-info">
+
+<div class="white-box text-center">
+<!-- <h6 class=" b-f">Choose your Captain &amp; Vice Captain</h6><h6 class="mb-0 b-f grey-t">C Gets 2X Points V.C Gets 1.5X points</h6> -->
+</div>
+</div> 
+
+<div class="white-box">
+<table class="table site-table">
+<thead>
+<tr>
+<th class="text-uppercase" >Team</th>
+<th class="text-uppercase" >Captain Name</th>
+<th class="text-uppercase" >vise Captain Name</th>
+<th class="text-uppercase" >Action</th>
+
+</tr>
+</thead>
+<tbody>
+<tr *ngFor="let item of viewteamdetails; index as i" class="player-data-td">
+<td>{{i+1}}</td>
+<td>{{item.cname}}</td>
+<td>{{item.vcname}}</td>
+<td  class="text-center">
+<div class="btn-group captain-btns" role="group" aria-label="Basic example">
+
+<button type="button" class="btn btn-secondary" (click)="teamedit(item.team_id)"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+
+<!-- <button type="button" class="btn btn-secondary" (click)="teamclone(item.match_key)"><i class="fa fa-clone" aria-hidden="true"></i></button> -->
+
+<button type="button" class="btn btn-secondary" (click)="preview(item.team_id)"><i class="fa fa-eye" aria-hidden="true"></i></button>
+
+<!-- <button type="button" id="visecaptain{{i}}" class="btn btn-secondary" (click)="preview(item.match_key)">join</button> -->
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+
+<div class="col-md-6 col-sm-12 ground-map-whl">
+
+<div class="ground-map-wrapper" >
+<div  class="bottom-btn btns-whl">
+<label  class="btn green-btn text-uppercase link" for="openchart" >Back</label>
+</div>
+<div class="ground-map-inner">
+<div class="whl-players"  >
+<div class="whl-players-wrapper" >
+<div class="text-center players-title">Wicket-Keepers</div>
+<div id="wk-players">
+<div id="wk-player" class="select-player" *ngFor="let teamdetails of viewwkteamdetails; index as i">
+<div [class] = "teamdetails.caption == 1?'select-palyer-inner captain':teamdetails.visecaption == 1?'select-palyer-inner vcaptain':'select-palyer-inner'">        
+<div class="player-pic"><img src="assets/images/player.svg" /></div>
+<div class="player-name">{{teamdetails.name}}</div>
+<div class="player-credits" *ngIf="true">{{teamdetails.credit}} cr</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="whl-players-wrapper">
+<div class="text-center players-title">Batsmen</div>
+<div id="bat-players">
+<div id="bat-player" class="select-player" *ngFor="let teamdetails of viewbatteamdetails; index as i">
+
+<div [class] = "teamdetails.caption == 1?'select-palyer-inner captain':teamdetails.visecaption == 1?'select-palyer-inner vcaptain':'select-palyer-inner'">    
+<div class="player-pic"><img src="assets/images/player.svg" /></div>
+<div class="player-name">{{teamdetails.name}}</div>
+<div class="player-credits">{{teamdetails.credit}} cr</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="whl-players-wrapper">
+<div class="text-center players-title">All-Rounders</div>
+<div id="ar-players">
+<div id="ar-player" class="select-player" *ngFor="let teamdetails of viewarteamdetails; index as i">
+<div [class] = "teamdetails.caption == 1?'select-palyer-inner captain':teamdetails.visecaption == 1?'select-palyer-inner vcaptain':'select-palyer-inner'" >  
+<div class="player-pic"><img src="assets/images/player.svg" /></div>
+<div class="player-name">{{teamdetails.name}}</div>
+<div class="player-credits">{{teamdetails.credit}} cr</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="whl-players-wrapper">
+<div class="text-center players-title">Bowlers</div>
+<div id="bowl-players">
+<div id="bowl-player" class="select-player" *ngFor="let teamdetails of viewbowlteamdetails; index as i">    
+<div [class] = "teamdetails.caption == 1?'select-palyer-inner captain':teamdetails.visecaption == 1?'select-palyer-inner vcaptain':'select-palyer-inner'">
+
+<div class="player-pic"><img src="assets/images/player.svg" /></div>
+<div class="player-name">{{teamdetails.name}}</div>
+<div class="player-credits">{{teamdetails.credit}} cr</div>
+</div>
+</div>
+
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</article>

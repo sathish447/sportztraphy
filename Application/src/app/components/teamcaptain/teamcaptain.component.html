@@ -1,0 +1,81 @@
+<app-inner-header></app-inner-header>
+<article class="full-page">
+    <section>
+        <div class="container page-container"> 
+            
+            <div class="page-center"> 
+            <div class="row no-pad">
+                    <div class="col-md-6">
+                            <div  class="bottom-btn btns-whl"><a  class="btn green-btn text-uppercase link" (click)="saveTeam()">Save Team</a><label  class="btn green-btn text-uppercase link v-map" for="openchart" >View Map</label></div>
+                            <div class="team-info">
+                    
+                                <div class="white-box text-center">
+                                    <h6 class=" b-f">Choose your Captain &amp; Vice Captain</h6><h6 class="mb-0 b-f grey-t">C Gets 2X Points V.C Gets 1.5X points</h6>
+                                </div>
+                                        </div> 
+
+                                        <div class="white-box">
+                                            <table class="table site-table">
+                                                <thead>
+                                                    <tr>
+                                                    
+                                                    <th class="text-uppercase" colspan="2">Players</th>
+                                                    <th class="text-uppercase"  colspan="2">Points</th>
+                                                    
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let item of teamdetails; index as i" class="player-data-td">
+                                                        <td class="player-pic"><img src="assets/images/player.svg"></td>
+                                                        <td class="player-name h6">{{item.name}}<br/>
+                                                            <!-- <span class="grey-t s-t">WK - IND</span> -->
+                                                        </td>
+                                                        <td>0</td>
+                                                        <td  class="text-center">
+                                                            <div class="btn-group captain-btns" role="group" aria-label="Basic example">
+                                                                <button type="button" id="captain{{i}}" class="btn btn-secondary" (click)="addcaptain(item.name,i)">C</button>
+                                                                <button type="button" id="visecaptain{{i}}" class="btn btn-secondary" (click)="addvcaptain(item.name,i)">V.C</button>
+                                                                
+                                                              </div>
+                                                        </td>
+                                                       
+                                                    </tr>
+                        
+                                                </tbody>
+                                            </table>
+                                        </div>
+                        </div>
+                <div class="col-md-6 col-sm-12 ground-map-whl">
+                    <input type="checkbox" class="openSidebarMenu" id="openchart">
+                    
+                        <div class="ground-map-wrapper">
+                                <div  class="bottom-btn btns-whl"><label  class="btn green-btn text-uppercase link" for="openchart" >Back</label></div>
+                                <div class="ground-map-inner">
+                                    <div class="whl-players">
+                                        <div class="whl-players-wrapper">
+                                            <div class="text-center players-title">Wicket-Keepers</div>
+                                            <div id="wk-players"></div>
+                                        </div>
+                                        <div class="whl-players-wrapper">
+                                            <div class="text-center players-title">Batsmen</div>
+                                            <div id="bat-players"></div>
+                                        </div>
+                                        <div class="whl-players-wrapper">
+                                            <div class="text-center players-title">All-Rounders</div>
+                                            <div id="ar-players"></div>
+                                        </div>
+                                        <div class="whl-players-wrapper">
+                                            <div class="text-center players-title">Bowlers</div>
+                                            <div id="bowl-players"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                    
+                            </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    </article>
+  

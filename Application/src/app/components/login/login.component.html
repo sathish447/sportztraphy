@@ -1,0 +1,65 @@
+<app-header></app-header>
+<article>
+    <section class="entry-form">
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-md-10">
+                    <div class="form-box-whl">
+                        <div></div>
+                        <div class="form-box-bg">
+                            <div class="form-title">Login</div>
+                            <form #loginFrom (ngSubmit)="onSubmit()" class="logfrm" autocomplete="off">
+
+                                <label [class.text-danger]="error.login_input">
+                                    <p class="label-txt">Email</p>
+                                    <input type="text" class="input" name="login_input" [(ngModel)]="form.login_input">
+                                    <div class="line-box">
+                                        <div class="line"></div>
+                                    </div>
+                                    <span *ngIf="error.login_input" class="help-block" [hidden]="!error.login_input">
+                                        <strong class="text-danger"> {{ error.login_input }}</strong>
+                                    </span>
+                                </label>
+
+                                <!-- <label [class.text-danger]="error.password">
+                                    <p class="label-txt">Password</p>
+                                    <input type="password" class="input" name="password" [(ngModel)]="form.password">
+                                    <div class="line-box">
+                                        <div class="line"></div>
+                                    </div>
+                                    <span *ngIf="error.password" class="help-block" [hidden]="!error.password">
+                                        <strong class="text-danger"> {{ error.password }}</strong>
+                                    </span>
+                                </label> -->
+ 
+                                <button class="site-btn btn-block site-btn" type="submit">Proceed</button>
+                            </form>
+                            <div class="form-box">
+                                <div class="text-center">
+                                    <h6 class="b-f grey-t">OR</h6>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-12"> 
+                                        <a (click)="login()" class="btn shadow-btn btn-block face-color"> <i
+                                                class="fa fa-facebook" aria-hidden="true"></i> facebook</a>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <a #gmailLoginRef (click)="signinWithGoogle()" class="btn shadow-btn btn-block goog-color"> <i #gmailLoginRef
+                                                class="fa fa-google" aria-hidden="true"></i> Gmail</a>
+                                    </div>
+                                </div>
+                                <br />
+                                <a class="small" routerLink="/forgotpassword">Forgot Password?</a>
+                                <div class="text-center small grey-t"> Not a Member? <a routerLink="/register"
+                                        class="site-link">Register</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</article>
+
+<app-footer class="home-footer"></app-footer>

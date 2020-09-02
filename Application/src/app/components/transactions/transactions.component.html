@@ -1,0 +1,107 @@
+<app-inner-header></app-inner-header>
+<article>
+    <section class="content-section content-boxes">
+        <div class="container">
+            <div class="title-box">
+                <div class="black-bg-box">
+                    <div class="row">
+                        <div class="col mid-table">
+                            <div class="icon"><img src="assets/images/user-pic.svg" /></div>
+                            <div class="title-name"><span class="title-content">My Transactions</span></div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="div-table-whl" id="accordion">
+                <table class="table  site-table data-td-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Date</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Transaction ID</th>
+                            <th scope="col">Status</th>
+
+                        </tr>
+                    </thead>
+<tbody>
+
+<!-- <tr *ngFor="let detail of trans_details | paginate: { itemsPerPage: 10, currentPage: p}; let i as index"> -->
+
+<tr *ngFor="let detail of collection.data | paginate: config" >
+<td data-label="Date">{{detail.date}}<br />
+<span class="s-t grey-t" >{{detail.time}}</span>
+</td>
+<td data-label="Amount" scope="row" *ngIf="detail.type == 'cancel-refund'">
+    <span class="s-t grey-t text-green">+</span> Rs.{{detail.amount?detail.amount:'-'}}<br>
+    <span class="s-t grey-t text-green">{{detail.type}}</span>
+</td>
+    
+<td data-label="Amount" scope="row" *ngIf="detail.type == 'deposit'">
+<span class="s-t grey-t text-green">+</span> Rs.{{detail.amount?detail.amount:'-'}}<br>
+<span class="s-t grey-t text-green">{{detail.type}}</span>
+</td>
+    
+<td data-label="Amount" scope="row" *ngIf="detail.type == 'withdraw'">
+<span class="s-t grey-t text-red">-</span> Rs.{{detail.amount?detail.am:'-'}}<br>
+<span class="s-t grey-t text-red">{{detail.type}}</span>
+</td>
+<td data-label="Amount" scope="row" *ngIf="detail.type == 'join contest'">
+<span class="s-t grey-t text-red">-</span> Rs.{{detail.amount?detail.amount:'-'}}<br>
+<span class="s-t grey-t text-red">{{detail.type}}</span>
+</td>
+
+<td data-label="Amount" scope="row" *ngIf="detail.type == 'winning'">
+<span class="s-t grey-t text-green">+</span> Rs.{{detail.amount?detail.amount:'-'}}<br>
+<span class="s-t grey-t text-green">{{detail.type}}</span>
+</td>
+<td data-label="Amount" scope="row" *ngIf="detail.type == Null">
+    <span class="s-t grey-t "></span> -<br>
+    <span class="s-t grey-t "></span>
+</td>
+
+<td data-label="Transaction ID">{{detail.transaction?detail.transaction_id:'-'}}</td>
+<td data-label="Transaction ID" *ngIf="detail.type != 'withdraw'">{{detail.status?detail.status:'-'}}</td>
+<td data-label="Status" *ngIf="detail.type == 'withdraw'"><div class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+    More Info
+</div></td>
+
+<td colspan="5" *ngIf="detail.type == 'withdraw'" id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion"> <div class="text-center">
+    <div class="card-body">
+        <div class="text-center h5">Withdrwal Process</div>
+            <ol class="progtrckr" data-progtrckr-steps="5">
+                <li class="progtrckr-done">Requested</li>
+                <li class="progtrckr-done">Processed</li>
+                <li class="progtrckr-todo">Credited</li>
+            </ol>
+        </div>
+    </div>
+</td>
+
+</tr>
+
+ <tr *ngIf="totalItems == 0"> 
+      <td class="div-table-td join-link text-uppercase s-t "  [attr.colspan]="5">No Records Found</td>                            
+    </tr> 
+    
+</tbody>            
+                      
+                </table>
+                
+                <div *ngIf="totalItems > 10">
+                    <pagination-controls  (pageChange)="pageChanged($event)"></pagination-controls>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+</article>
+
+
+
+
+
+<app-inner-footer></app-inner-footer>

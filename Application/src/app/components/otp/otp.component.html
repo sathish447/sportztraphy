@@ -1,0 +1,45 @@
+<app-header></app-header>
+<article>
+    <section class="entry-form">
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-md-10">
+                    <div class="form-box-whl">
+                        <div></div>
+                        <div class="form-box-bg"> 
+                            <div class="form-title">OTP</div>
+                            <form #otpFrom="ngForm" (ngSubmit)="onSubmit(otpFrom)" class="logfrm"  autocomplete="off">
+                                <label>
+                                    <p class="label-txt">Enter OTP</p>
+                                    <input type="text" class="input" name="login_otp" #login_otp="ngModel" ngModel pattern="[0-9]+" required>                                    
+                                    <div class="line-box">
+                                        <div class="line"></div>
+                                    </div>
+                                    <span class="help-block" [hidden]="!error.login_otp">
+                                        <strong class="text-danger"> {{ error.login_otp }}</strong>
+                                    </span>
+                                </label>
+                                <div class="text-center small grey-t">Request for a new one in <span href="#"
+                                        class="text-danger">{{timeLeft}} secs</span></div>
+                                <br />
+                                <button class="green_btn btn-block site-btn" type="submit">Verify
+                                    OTP</button>
+                            </form>
+                            <div class="form-box">
+
+                                <br />
+                                <div class="text-center small grey-t">Did not receive the OTP? <a href="#"
+                                        class="site-link">Resend</a></div>
+
+                                <br />
+                                <div class="text-center small grey-t">Facing issues? <a href="#"
+                                        class="site-link">contact us</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</article>
+<app-footer class="home-footer"></app-footer>

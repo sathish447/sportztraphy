@@ -1,0 +1,112 @@
+<app-inner-header></app-inner-header>
+<article>
+<section class="content-boxes content-section">
+<div class="container">
+
+<div class="title-box">
+<div class="black-bg-box">
+<div class="row">
+<div class="col mid-table">
+<div class="icon"><img src="assets/images/user-pic.svg"/></div>
+<div class="title-name"><span class="title-content">My Matches</span></div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="tabs-whl">
+<div class="white-tabs">
+<ul class="nav nav-tabs even-tabs  sticky-header container" id="myTab" role="tablist">
+<li class="nav-item">
+<a class="nav-link active" id="cricup-tab" data-toggle="tab" href="#cricup" role="tab"
+aria-controls="cricup" aria-selected="true">Upcoming</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" id="criclive-tab" data-toggle="tab" href="#criclive" role="tab"
+aria-controls="criclive" aria-selected="false">live</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" id="criccomp-tab" data-toggle="tab" href="#criccomp" role="tab"
+aria-controls="criccomp" aria-selected="false">Completed</a>
+</li>
+</ul>
+</div>
+<div class="tab-content" id="myTabContent">  
+<div class="tab-pane fade show active" id="cricup" role="tabpanel" aria-labelledby="cricup-tab">
+<div class="div-table-whl">    
+<div class="div-table-wrapper">
+<div *ngFor="let detail of upcomming" class="div-table-tr" routerLink="/contests/{{detail.match_key}}">
+    <div class="div-table-td match-name grey-t"><h5 class="black-t mb-0 capitalize">{{detail.format}} <span class="s-t">{{detail.season_name}}</span></h5>
+{{ detail.name}}</div>
+<div class="div-table-td country-name text-uppercase">{{detail.team1_key}}<span class="grey-t">VS</span>{{detail.team2_key}}</div>
+<div class="div-table-td flag-name"><div class="flags-whl">
+<span class="flag-pic-s"><img src="assets/images/flag/{{detail.team1_key}}.svg" /></span>
+<span class="trophy-pic"><img src="assets/images/tropy1.svg" /></span>
+<span class="flag-pic"><img src="assets/images/flag/{{detail.team2_key}}.svg" /></span>
+</div></div> 
+<div class="div-table-td time-level">{{detail.time_left}}<span class="grey-t s-t text-uppercase"></span></div>
+<div class="div-table-td join-link text-uppercase s-t">{{detail.text_status}}</div>                        
+</div>
+<div *ngIf="uplen == 0" class="div-table-tr m-height">
+    <div class="div-table-td text-center text-uppercase s-t">No Records Found</div>
+</div>  
+</div>
+</div>
+</div>
+
+<div class="tab-pane fade" id="criclive" role="tabpanel" aria-labelledby="criclive-tab">
+ 
+<div class="div-table-whl">
+<div class="div-table-wrapper">
+<div *ngFor="let detail of live" class="div-table-tr" routerLink="/mycontest/{{detail.match_key}}">
+<div class="div-table-td match-name grey-t"><h5 class="black-t mb-0 capitalize">{{detail.format}} <span class="s-t">{{detail.season_name}}</span></h5>
+{{ detail.name}}</div>
+<div class="div-table-td country-name text-uppercase">{{detail.team1_key}}<span class="grey-t">VS</span>{{detail.team2_key}}</div>
+<div class="div-table-td flag-name"><div class="flags-whl">
+<span class="flag-pic-s"><img src="assets/images/flag/{{detail.team1_key}}.svg" /></span>
+<span class="trophy-pic"><img src="assets/images/tropy1.svg" /></span>
+<span class="flag-pic"><img src="assets/images/flag/{{detail.team2_key}}.svg" /></span>
+</div></div>
+<div class="div-table-td time-level"><span class="grey-t s-t text-uppercase">{{detail.status}}</span></div>
+<!-- <div class="div-table-td join-link text-uppercase s-t">{{detail.text_status}}</div>                               -->
+<div class="div-table-td join-link text-uppercase s-t">{{detail.text_status}}</div> 
+</div>
+<div *ngIf="livelen == 0" class="div-table-tr m-height">
+    <div class="div-table-td text-center text-uppercase s-t">No Records Found {{live}}</div>
+</div> 
+</div>
+</div>
+</div>
+
+<div class="tab-pane fade" id="criccomp" role="tabpanel" aria-labelledby="criccomp-tab">
+<div class="div-table-whl"> 
+<div class="div-table-wrapper" *ngFor="let detail of completed">    
+<div  class="div-table-tr" routerLink="/mycontest/{{detail.match_key}}">
+<div class="div-table-td match-name grey-t"><h5 class="black-t mb-0 capitalize">{{detail.format}} <span class="s-t">{{detail.season_name}}</span></h5>
+{{ detail.name}}</div>
+<div class="div-table-td country-name text-uppercase">{{detail.team1_key}}<span class="grey-t">VS</span>{{detail.team2_key}}</div>
+<div class="div-table-td flag-name"><div class="flags-whl">
+<span class="flag-pic-s"><img src="assets/images/flag/{{detail.team1_key}}.svg" /></span>
+<span class="trophy-pic"><img src="assets/images/tropy1.svg" /></span>
+<span class="flag-pic"><img src="assets/images/flag/{{detail.team2_key}}.svg" /></span>
+</div></div>
+<div class="div-table-td time-level"><span class="grey-t s-t text-uppercase">{{detail.status}}</span></div>
+<div class="div-table-td join-link text-uppercase s-t">{{detail.text_status}}</div>                              
+</div>
+</div>
+<div *ngIf="complen == 0" class="div-table-tr m-height">
+    <div class="div-table-td text-center text-uppercase s-t">No Records Found</div>
+</div> 
+</div>
+</div>
+</div>
+</div>
+
+<!--up-coming-matches-->
+
+</div>
+
+</section>
+
+</article>
+<app-inner-footer></app-inner-footer>

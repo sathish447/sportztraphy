@@ -1,0 +1,306 @@
+<app-inner-header></app-inner-header>
+<article>
+<section class="tab-whl sticky-header without-banner">
+<div class="container">
+ 
+<div class="div-table-tr n-hover">
+<div class="div-table-td text-uppercase left-title">
+<h5 class="mb-0">Contests</h5>
+</div>
+<div class="div-table-td country-name text-uppercase">{{team1_key}}<span
+class="grey-t">VS</span>{{team2_key}}</div>
+<div class="div-table-td flag-name">
+<div class="flags-whl">
+<span class="flag-pic-s"><img
+src="assets/images/flag/{{team1_key}}.svg" /></span>
+<span class="trophy-pic"><img src="assets/images/tropy1.svg" /></span>
+<span class="flag-pic"><img
+src="assets/images/flag/{{team2_key}}.svg" /></span>
+</div>
+</div>
+
+<div class="div-table-td grey-t s-t text-uppercase text-center">{{time_left}}</div>
+<!-- <div class="div-table-td more-link text-uppercase s-t">More Info</div> -->
+</div>
+
+</div>
+</section>
+<section class="content-section">
+<div class="container">
+<!-- <div class="s-t text-right title-top link" routerLink="/contests/{{matchkey}}"><i class="material-icons icon-image-preview" >arrow_back</i> Back to Contests</div> -->
+<div class="content-box"> <br>
+<div class="alert alert-danger text-center h6"
+*ngIf="msg_completed == 'Match abandoned without toss due to rain'">
+<i class="fa fa-exclamation-triangle" aria-hidden="true"
+style="margin: 0px 5px;">
+</i> Match abandoned without toss due to rain
+</div>
+<div class="score-box">
+    <div class="score-info h6 text-uppercase run_str1_name" *ngIf="run_str1 != ''"></div>&nbsp;
+    <div class="score-info h6 run_str1" *ngIf="run_str1 != ''"></div>
+    <div class="divider grey-t">|</div>
+    <div class="score-info h6 text-uppercase run_str2_name" *ngIf="run_str2 != ''"></div>&nbsp;
+    <div class="score-info h6 run_str2" *ngIf="run_str2 != ''"></div>
+</div>
+<div class="div-table-tr selected-tr" *ngIf="msg_completed != ''">
+<div>
+<div class="div-table-td Price-amount s-t grey-t">
+<h5 class="black-t mb-0">Rs.{{contest_details.prize_pool}}</h5>
+Prize Pool
+</div>
+<div class="div-table-td contest-progress-bar-whl">
+<div class="contest-progress-bar">
+<div class="row align-items-center grey-t">
+<div class="col">
+<h5 class="black-t mb-0 teamname">
+    <!-- {{teamname}} -->
+</h5>Team Name
+</div>
+<div class="col text-center">
+<h5 class="black-t mb-0">{{listcount}}
+</h5>Spots
+</div>
+<div class="col text-right">
+<h5 class="black-t mb-0 user_rank">#
+</h5>
+<div class="user_points">
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div *ngIf="msg_completed === ''">
+<div class="div-table-whl">
+<div class="div-table-wrapper">
+<div class="div-table-tr">
+<div class="div-table-td Price-amount s-t  grey-t">
+<h5 class="black-t mb-0">
+Rs.{{contest_details.prize_pool}}</h5>
+Prize Pool
+</div>
+<div class="div-table-td contest-progress-bar-whl">
+<div class="contest-progress-bar">
+<div class="progress-bar-inner">
+<div class="progress-bar-level"
+[style.width.%]="contest_details.range">
+</div>
+</div>
+<div
+class="row align-items-center s-t grey-t">
+
+<div class="col">
+{{contest_details.total_contest}}
+spots left
+</div>
+<div class="col text-right">
+{{contest_details.contest_size}}
+spots
+</div>
+</div>
+</div>
+</div>
+<div
+class="div-table-td fee-link text-right text-uppercase s-t">
+<span class="grey-t">Entry Fee <br>
+{{contest_details.entry_fee}}
+
+</span>
+<br>
+</div>
+
+</div>
+
+</div>
+<div class="modal fade" id="withdraw-alert-Modal" tabindex="-1"
+role="dialog" aria-labelledby="withdraw-alert-ModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title text-center"
+id="exampleModalLabel">First
+things First</h5>
+<button type="button" class="close"
+data-dismiss="modal"
+aria-label="Close">
+<span
+aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body">
+<div class="tab-pane fade active"
+id="nav-tab-card">
+
+<form role="form"
+class="line-form">
+<p class="sing-content">
+This Contest
+Already Joined.
+</p>
+
+<button class="subscribe btn site-btn btn-lg btn-block"
+data-dismiss="modal"
+aria-label="Close"
+type="button">
+OK </button>
+</form>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+    
+<div class="tabs-whl">
+<ul class="nav nav-tabs even-tabs white-tabs" id="myTab" role="tablist">
+<li class="nav-item">
+<a class="nav-link active" id="home-tab" data-toggle="tab"
+href="#home" role="tab" aria-controls="home"
+aria-selected="true">Prize Info</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" id="leader-tab" data-toggle="tab"
+href="#leader" role="tab" aria-controls="leader"
+aria-selected="false">Leaderboard</a>
+</li>
+</ul>
+<div class="tab-content" id="myTabContent">
+<div class="tab-pane fade show active" id="home" role="tabpanel"
+aria-labelledby="home-tab">
+<div class="content-div-even white-box">
+<div class="rank-no h6 mb-0">Rank</div>
+<div class="rank-price h6 mb-0">Prize</div>
+</div>
+<div *ngFor="let item of list"
+class="content-div-even white-box">
+<div class="rank-no">{{item.type}}</div>
+<div class="rank-price">Rs.{{item.value}}</div>
+</div>
+</div>
+
+<div class="tab-pane fade" id="leader" role="tabpanel"
+aria-labelledby="leader-tab">
+<div class="leader-board-div white-box">
+<div class="leader-div1 h6 mb-0 text-uppercase">All Teams</div>
+<div class="leader-div2 h6 mb-0 text-uppercase">Points
+</div>
+<div class="leader-div3 h6 mb-0 text-uppercase">Ranks
+</div>
+</div>
+
+<div class="myteams"></div>
+<div id="accordionExample" class="notsocketview">
+
+<div class="myteams"></div>
+<div *ngFor="let fantasy of fantasypoints; index as i">
+
+    <div [attr.data-target]="'#open-'+fantasy.$oid" 
+    data-toggle="collapse"
+    [class]="fantasy.user_id == user_id ? 'leader-board-div white-box showmyteam ownteamrow' : 'leader-board-div white-box showmyteam'"
+     (click)="getelevenplayers(fantasy.$oid)">
+    <div class="leader-div1">
+    {{ fantasy.user_name }}
+    </div>
+    <div class="leader-div2">
+    {{ fantasy.fantasy_points }}
+    </div>
+    <div class="leader-div3"></div>
+    </div>
+    
+
+<div class="collapse" data-parent="#accordionExample" id="open-{{fantasy.$oid}}" >
+<div class="white-box v-ground white-t">
+
+    <table class="select-table-player white-t">
+        <tbody>
+        <tr>
+        <td>
+        <h6>Wicket-Keepers</h6>
+        <table>
+        <tbody>
+            
+        <tr *ngFor="let wkdetails of viewwkplayer" [class]="wkdetails.caption == 1 ? 'player-data-td captain' : wkdetails.v_caption == 1 ? 'player-data-td vcaptain' : 'player-data-td'">
+        <td class="player-pic"><img src="assets/images/player.svg"></td>
+        <td class="player-name h6">{{wkdetails.name}}<br><span class="grey-t s-t">WK - IND</span></td>
+        <td>0<br><span class="grey-t s-t">Points</span></td>
+        </tr>
+        </tbody>
+        </table>
+        </td>
+        <td>
+        <h6>Batsmen</h6>
+        <table>
+        <tbody>
+        <tr  *ngFor="let wkdetails of viewbatplayer" [class]="wkdetails.caption == 1 ? 'player-data-td captain' : wkdetails.v_caption == 1 ? 'player-data-td vcaptain' : 'player-data-td'">
+        <td class="player-pic"><img src="assets/images/player.svg"></td>
+        <td class="player-name h6">{{wkdetails.name}}<br><span class="grey-t s-t">BAT - IND</span></td>
+        <td>0<br>
+        <span class="grey-t s-t">Points</span>
+        </td>
+        </tr>
+        </tbody>
+        </table>
+        </td>
+        <td>
+        <h6>All-Rounders</h6>
+        <table>
+        <tbody>
+        <tr *ngFor="let wkdetails of viewarplayer" [class]="wkdetails.caption == 1 ? 'player-data-td captain' : wkdetails.v_caption == 1 ? 'player-data-td vcaptain' : 'player-data-td'">
+        <td class="player-pic"><img src="assets/images/player.svg"></td>
+        <td class="player-name h6">{{wkdetails.name}}<br><span class="grey-t s-t">AR - IND</span></td>
+        <td>0<br>
+        <span class="grey-t s-t">Points</span>
+        </td>
+        </tr>  
+        </tbody>
+        </table>
+        </td>
+        <td>
+        <h6>Bowlers</h6>
+        <table>
+        <tbody>
+        <tr *ngFor="let wkdetails of viewbowlplayer" [class]="wkdetails.caption == 1 ? 'player-data-td captain' : wkdetails.v_caption == 1 ? 'player-data-td vcaptain' : 'player-data-td'">
+        <td class="player-pic"><img src="assets/images/player.svg"></td>
+        <td class="player-name h6">{{wkdetails.name}}<br><span class="grey-t s-t">BOWL - IND</span></td>
+        <td>0<br>
+        <span class="grey-t s-t">Points</span>
+        </td>
+        </tr>
+        </tbody>
+        </table>
+        </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</div>
+</div>
+
+<div *ngIf="fantasypointscount == 0" class="div-table-tr">
+    <div class="div-table-td join-link text-uppercase s-t">No Persions Joined</div>
+    </div>    
+
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+</div>
+</section>
+</article>
+
+<app-inner-footer></app-inner-footer>

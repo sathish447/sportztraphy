@@ -1,0 +1,224 @@
+<app-inner-header></app-inner-header>
+<article>
+<section class="content-section content-boxes">
+<div class="container">
+<div class="title-box">
+<div class="black-bg-box">
+<div class="row">
+<div class="col mid-table">
+<div class="icon"><img src="assets/images/verify.svg" /></div>
+<div class="title-name"><span class="title-content">Account Verification</span></div>
+</div>
+</div>
+</div>
+</div>
+<div class="content-box">
+<div class="tabs-whl">
+<ul class="nav nav-tabs even-tabs white-tabs" id="myTab" role="tablist">
+<li class="nav-item">
+<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+aria-controls="home" aria-selected="true">Mobile & Email</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+aria-controls="profile" aria-selected="false">PAN</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
+aria-controls="contact" aria-selected="false">Bank</a>
+</li>   
+</ul>
+<div class="tab-content" id="myTabContent">
+<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+<div class="content-tr border-box">
+<div class="div-table-td">
+<h5 class="black-t">Your Mobile Number</h5> 
+<div class="grey-t mb-0">{{userphone[0]}}</div>
+</div>
+
+<div *ngIf="mobileverify == 1" class="div-table-td text-right">
+<div class="green-t text-uppercase pull-right icon-text"> <i
+class="material-icons icon-image-preview">check_circle_outline</i>Verified</div>
+</div>
+ 
+<div *ngIf="mobileverify == 0" class="div-table-td text-right">
+<div class="text-danger text-uppercase pull-right icon-text">
+<i class="material-icons icon-image-preview">cancel</i> Not Verified</div>
+</div>
+
+</div>
+<div class="content-tr border-box">
+<div class="div-table-td">
+<h5 class="black-t">Email Verification</h5>
+<div class="grey-t mb-0">{{useremail[0]}}</div>
+
+<form *ngIf="emailverify == 0" #emailverifyFrom="ngForm" (ngSubmit)="onEmailVerifySubmit(emailverifyFrom)" role="form" class="line-form row" autocomplete="off">
+<div class="col-md-6 col-sm-7">
+<label>
+<p class="label-txt">Email ID</p>
+<input type="text" class="input" name="email" id="email" #email="ngModel" ngModel readonly value="{{useremail[0]}}">
+<div class="line-box">
+<div class="line"></div>
+</div>
+</label>
+<button class="btn site-btn btn-md btn-block" type="submit"> Verify
+</button>
+</div>
+</form>
+</div>
+<div *ngIf="emailverify == 1" class="div-table-td text-right">
+        <div class="green-t text-uppercase pull-right icon-text"> <i
+        class="material-icons icon-image-preview">check_circle_outline</i>Verified</div>
+</div>
+</div>
+</div>
+<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+<div class="content-tr border-box">
+<div class="div-table-td">
+<h5 class="black-t">PAN Card Verification</h5>
+<form #panSubmitFrom="ngForm" (ngSubmit)="panSubmit(panSubmitFrom)" class="line-form row"  autocomplete="off">
+<div class="col-md-6 col-sm-7"> 
+<div class="custom-file-upload">
+<input id="file-upload" type="file" class="custom-file-upload1 btn grey-btn btn-block"  name="upload_pan_image" (change)="pan_image($event);"
+        [(ngModel)]='panForm.upload_pan_image' style="display: block"/> 
+
+<div class="pic-preview">
+<img id="pandoc" *ngIf=pandoc  [src]="pandoc" width="100px" height="100px"
+class="img-responsive">
+</div>
+<!-- <label for="file-upload"
+class="custom-file-upload1 btn grey-btn btn-block">
+<i class="fa fa-id-card" aria-hidden="true"></i> &nbsp; Upload PAN
+Card Image
+</label> -->
+
+<span *ngIf="error.upload_pan_image" class="help-block" [hidden]="!error.upload_pan_image">
+    <strong class="text-danger"> {{ error.upload_pan_image }}</strong>
+</span>
+</div>
+
+<label [class.text-danger]="error.pan_name">
+<p class="label-txt">Name<span class="star">*</span></p>
+<input type="text" class="input" name="pan_name" #pan_name="ngModel" ngModel="{{panForm.pan_name}}" required>
+<div class="line-box">
+<div class="line"></div>
+</div>
+<span *ngIf="error.pan_name" class="help-block" [hidden]="!error.pan_name">
+        <strong class="text-danger"> {{ error.pan_name }}</strong>
+    </span>
+</label>
+<label [class.text-danger]="error.pan_number">
+<p class="label-txt">PAN Number<span class="star">*</span></p>
+<input type="text" class="input" name="pan_number" #pan_number="ngModel" ngModel="{{panForm.pan_number}}" required>
+<div class="line-box">
+<div class="line"></div> 
+</div>
+<span *ngIf="error.pan_number" class="help-block" [hidden]="!error.pan_number"> 
+        <strong class="text-danger"> {{ error.pan_number }}</strong>
+    </span> 
+</label> 
+<label [class.text-danger]="error.dob_pan">
+<p class="label-txt">Date of Birth<span class="star">*</span></p>
+<!-- [minDate]="expdate" [maxDate]="maxDate" -->
+<input type="text" class="input" name="dob_pan" ngModel="{{panForm.dob_pan}}" [bsConfig]="{containerClass:'theme-default'}" #dp="bsDatepicker" bsDatepicker>
+
+
+<div class="line-box">
+<div class="line"></div>
+</div>
+<span *ngIf="error.dob_pan" class="help-block" [hidden]="!error.dob_pan">
+        <strong class="text-danger"> {{ error.dob_pan }}</strong>
+</span>
+</label>
+<button class="btn site-btn btn-md btn-block" type="submit"> Verify
+</button>
+</div>
+</form>
+</div>
+
+<div class="div-table-td text-right">
+</div>
+</div>
+</div>
+<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+
+<div class="content-tr border-box">
+<div class="div-table-td">
+<h5 class="black-t">Bank Account Verification</h5>
+<form #bankSubmitFrom="ngForm" (ngSubmit)="bankSubmit(bankSubmitFrom)" class="line-form  row"  autocomplete="off">
+<div class="col-md-6 col-sm-7">
+<div class="custom-file-upload">
+<!-- <label for="file-upload" class="custom-file-upload1 btn grey-btn btn-block" > 
+<i class="fa fa-id-card" aria-hidden="true"></i> &nbsp; Upload Bank Account Proof </label> -->
+ <input id="file-upload" type="file" class="custom-file-upload1 btn grey-btn btn-block"  name="upload_bank_image" (change)="bank_image($event);"
+[(ngModel)]='bankForm.upload_bank_image' style="display: block"/> 
+<div class="pic-preview">
+<img id="bankdoc" *ngIf=bankdoc  [src]="bankdoc" width="100px" height="100px"
+class="img-responsive">
+</div>
+</div>
+<label [class.text-danger]="error.account_number">
+<p class="label-txt">Account Number<span class="star">*</span></p>
+<input type="text" class="input" name="account_number" #account_number="ngModel" ngModel="{{bankForm.account_number}}" pattern="[0-9]+" required>
+<div class="line-box">
+<div class="line"></div>
+</div>
+<span *ngIf="error.account_number" class="help-block" [hidden]="!error.account_number">
+        <strong class="text-danger"> {{ error.account_number }}</strong>
+    </span>
+</label>
+<!-- *ngIf="bankstatus == 0" -->
+<label   [class.text-danger]="error.retype_account_number">
+<p class="label-txt">Retype Account Number<span class="star">*</span>
+</p>
+
+<input  type="text" class="input" name="retype_account_number"  #retype_account_number="ngModel" ngModel="{{bankForm.account_number}}" required>
+<div class="line-box">
+<div class="line"></div>
+</div>
+
+<span *ngIf="error.retype_account_number" class="help-block" [hidden]="!error.retype_account_number">
+        <strong class="text-danger"> {{ error.retype_account_number }}</strong>
+    </span>
+</label>
+<label [class.text-danger]="error.bank_name">
+<p class="label-txt">Bank Name<span class="star">*</span></p>
+<input type="text" class="input" name="bank_name" #bank_name="ngModel" ngModel="{{bankForm.bank_name}}" required>
+<div class="line-box">
+<div class="line"></div>
+</div>
+<span *ngIf="error.branch" class="help-block" [hidden]="!error.branch">
+        <strong class="text-danger"> {{ error.branch }}</strong>
+    </span>
+</label>
+<label [class.text-danger]="error.branch">
+<p class="label-txt">Branch<span class="star">*</span></p>
+<input type="text" class="input" name="branch" #branch="ngModel" ngModel="{{bankForm.branch}}" required>
+<div class="line-box">
+<div class="line"></div>
+</div>
+
+<span *ngIf="error.branch" class="help-block" [hidden]="!error.branch">
+        <strong class="text-danger"> {{ error.branch }}</strong>
+    </span>
+</label>
+
+<button class="btn site-btn btn-md btn-block" type="submit"> Verify
+</button>
+</div>
+</form>
+</div>
+<div class="div-table-td text-right">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</section>
+</article>
+
+<app-inner-footer></app-inner-footer>

@@ -1,0 +1,62 @@
+<app-inner-header></app-inner-header>
+<article>
+    <section class="content-section content-boxes">
+        <div class="container">
+            <div class="title-box">
+                <div class="black-bg-box">
+                    <div class="row">
+                        <div class="col mid-table">
+                            <div class="icon"><img src="assets/images/user-pic.svg" /></div>
+                            <div class="title-name"><span class="title-content">My Account</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="div-table-whl">
+                <div class="div-table-wrapper">
+                    <div id="accordionExample">
+                        <div class="content-tr">
+                            <div class="div-table-td">
+                                <h5 class="grey-t text-uppercase">Withdrawable Amount</h5>
+                                <h4 class="black-t mb-0">{{ winningamt }}</h4>
+                            </div>
+
+                        </div>
+                        <div class="content-tr">
+                            
+                         <form #withdrawForm="ngForm" (ngSubmit)="onSubmit(withdrawForm)" class="line-form col-lg-4 col-md-6 col-sm-12" autocomplete="off">
+                                <div class="text-left grey-t s-t">Need to verify your account for withdrawing your winnigs</div>
+                                <label [class.text-danger]="error.pan_name">
+                                    <p class="label-txt">Enter Amount</p>
+                                    <span class="rs-span">Rs.</span>
+                                    <input type="text" class="input rs-amount" name="withdrawmoney" id="withdrawmoney" #withdrawmoney="ngModel" ngModel={{withdrawForm.withdrawmoney}} pattern="[0-9]+" required>
+                                    <div class="line-box">
+                                        <div class="line"></div>
+                                    </div>
+                                    <div class="text-left text-capitalize grey-t s-t">Min amout Rs.{{minimum_limit}} and Max amount
+                                        Rs.{{maximum_limit}} allowed</div>
+
+                                        <span *ngIf="error.withdrawmoney" class="help-block" [hidden]="!error.withdrawmoney">
+                                                <strong class="text-danger">{{ error.withdrawmoney }}</strong>
+                                                </span>
+                                </label>
+
+                                <!-- routerLink="/paymentmethod" -->
+                                <button  class="subscribe btn site-btn  btn-block"
+                                    type="submit"> Withdraw </button>
+                            </form>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+</article>
+
+
+<app-inner-footer></app-inner-footer>

@@ -1,0 +1,175 @@
+<app-inner-header></app-inner-header>
+<article>
+
+<section class="tab-whl sticky-header without-banner">
+<div class="container">
+<div class="top-menu-link link" routerLink="/contests"></div>
+<div class="div-table-tr n-hover">
+<div class="div-table-td text-uppercase left-title">
+<h5 class="mb-0">Contests</h5>
+</div> 
+<div class="div-table-td country-name text-uppercase">{{team1_key}}<span class="grey-t">VS</span>{{team2_key}}</div>
+<div class="div-table-td flag-name">
+<div class="flags-whl">
+<span class="flag-pic-s"><img src="assets/images/flag/{{team1_key}}.svg" /></span>
+<span class="trophy-pic"><img src="assets/images/tropy1.svg" /></span>
+<span class="flag-pic"><img src="assets/images/flag/{{team2_key}}.svg" /></span>
+</div>
+</div>
+<div class="div-table-td grey-t s-t text-uppercase text-center text-center">{{time_left}}</div>
+<!-- <div class="div-table-td more-link text-uppercase s-t">More Info</div> -->
+</div>
+
+</div>
+</section>
+
+<section class="sec-pad content-section contest-list">
+
+<div class="container"> 
+<div class="sticky-header top-btn btns-whl">
+<a *ngIf="team_create_status == 1" class="btn green-btn text-uppercase " routerLink="/viewteam/{{matchkey}}/">My Team <span  [class]="myteam > 0 ? 'team-count' : ''" >{{myteam}}</span></a>
+<a *ngIf="team_create_status == 0" class="btn green-btn text-uppercase" routerLink="/team-create/{{matchkey}}/">Create Team</a>
+<a [style.display]="time_left == 'completed' ?'none':'block' "  class="btn green-btn text-uppercase " routerLink="/create-contest">Create Contest</a>
+<a *ngIf='user_contest_count != 0' class="btn green-btn text-uppercase " routerLink="/mycontest/{{matchkey}}" >My Contest<span class="team-count">{{user_contest_count}}</span></a>
+
+</div>
+<!--list of contests-->
+<div *ngFor="let detail of category_details; index as i"  [style.display]="detail.show_status > 0 ?'block':'none' ">
+<div class="title-box sticky-header">
+<div class="black-bg-box">
+<div class="row">
+<div class="col mid-table">
+<div class="icon"><img src="assets/images/contest-star.svg"></div>
+<div class="">
+   <span class="title-name">
+    <span class="title-content">{{detail.name}}</span>
+<br/>
+<span class="grey-t">Get ready for mega winnings!</span>
+</span> 
+</div> 
+</div>
+</div>
+</div>
+</div>
+<div  class="div-table-whl">
+<div class="div-table-wrapper">
+<div class="div-table-tr"  *ngFor="let condetail of contest_details; index as k" [style.display]="condetail.cat_name == detail.name ?'block':'none' ">
+    <div class="inner-table-div-tr" *ngIf='condetail.cat_name == detail.name' >
+
+<div class="div-table-td Price-amount s-t  grey-t" routerLink="/contest-info/{{matchkey}}/{{condetail.contest_id}}/{{authid}}">
+    <h5 class="black-t mb-0">Rs.{{condetail.prize_pool}}</h5>Prize Pool
+</div>
+<div class="div-table-td contest-progress-bar-whl" routerLink="/contest-info/{{matchkey}}/{{condetail.contest_id}}/{{authid}}">
+    <div class="contest-progress-bar">
+        <div class="progress-bar-inner"> 
+            <div class="progress-bar-level" [style.width.%]="condetail.range"></div>
+        </div>
+        <div class="row align-items-center s-t grey-t">
+
+            <div class="col">
+                {{condetail.total_contest}} spots left
+            </div>
+            <div class="col text-right">
+                {{condetail.contest_size}} spots
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="div-table-td fee-link text-right text-uppercase s-t">
+  &nbsp;
+ </div>
+
+ <div *ngIf='condetail.join_status == 1' class="div-table-td fee-link fee-btn text-right green-t text-uppercase s-t" >
+        <span class="btn-sm btn btn-secondary">joined</span>
+ </div> 
+
+ <div *ngIf='condetail.join_status == 0' class="div-table-td fee-link fee-btn text-right text-uppercase s-t" >
+     <span class="grey-t">joinContest</span> 
+<br>
+<a *ngIf="(teamdetailscount <= 1)" (click)="joinContest(condetail.entry_fee,condetail.contest_id)" class="btn btn-sm stie-btn" [style.visiblity]="teamdetailscount <= 1 ?'visible':'hidden' " >Rs.{{condetail.entry_fee}}</a>
+<a *ngIf="(teamdetailscount > 1)" class="btn btn-sm stie-btn" data-toggle="modal" data-target="#teams-alert-Modal" (click)="feesDetails(condetail.entry_fee,condetail.contest_id)" [style.visiblity]="teamdetailscount <= 1 ?'visible':'hidden' ">Rs.{{condetail.entry_fee}}</a>
+</div>
+</div> 
+<div _ngcontent-veo-c2="" class="two-row-div s-t grey-t">
+    <div>
+        <img src="assets/images/tropy.svg" width="20px">
+        {{ condetail.win_percent }}%</div>
+    <div class="text-right">        
+        
+        <span [style.visiblity]="condetail.multiple == '1' ?'visible':'hidden' " class="add-circle-contest">{{(condetail.multiple == 1)?'M':'S'}}</span>
+        <span [style.display]="condetail.type == '1' ?'inline-block;':'none' " class="add-circle-contest">C</span>
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+<!-- Multiple Team Status -->
+<div class="modal fade" id="teams-alert-Modal" tabindex="-1" role="dialog"
+aria-labelledby="withdraw-alert-ModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title text-center" id="exampleModalLabel">Please choose your team</h5>
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body team-table-content">
+<div class="tab-pane fade active show" id="nav-tab-card">
+
+<form role="form" class="line-form">
+<div *ngFor="let details of teamdetails; index as i">
+    <table class="team-table">
+        <tr>
+            <td><input type="radio" name="Teams" value="{{details.teamid}}" (click)="feesDetails(entry_fees,cat_id,details.teamid)"> <span class="h6 black-t">Teams</span> </td>
+            <td>{{details.caption}}<br/><span class="grey-t s-t">Captain</span></td>
+            <td>{{details.v_caption}}<br/><span class="grey-t s-t">Vice Captain</span></td>
+            <td style="text-align:right"><a routerLink="/viewteam/{{matchkey}}/" class="btn btn-sm stie-btn">Preview</a></td>
+        </tr>
+    </table>
+</div>
+<div class="text-center">
+<a class="subscribe btn site-btn btn-lg col-md-3 col-sm-12" data-dismiss="modal" aria-label="Close" data-toggle="modal" data-target="#teams-alert-Modal" (click)="joinContest(entry_fees,cat_id,teamid)"> Join Contest </a>
+</div>
+</form>          
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</section>
+</article>
+
+<!-- Joined Status -->
+<div class="modal fade" id="withdraw-alert-Modal" tabindex="-1" role="dialog"
+aria-labelledby="withdraw-alert-ModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title text-center" id="exampleModalLabel">First things First</h5>
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body">
+<div class="tab-pane fade active show" id="nav-tab-card">
+
+<form role="form" class="line-form">
+<p class="sing-content">This Contest Already Joined.</p>
+
+<button class="subscribe btn site-btn btn-lg btn-block" data-dismiss="modal" aria-label="Close"
+type="button" > Join Contest </button>             
+</form>          
+</div>
+</div>
+
+</div>
+</div>
+</div>
+<app-inner-footer></app-inner-footer>

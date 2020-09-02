@@ -1,0 +1,151 @@
+<app-inner-header></app-inner-header>
+<article>
+    <section class="banner">
+<div class="container">
+    
+</div>
+
+    </section>
+    <section class="tab-whl sticky-header">
+<div class="container"> 
+        <ul class="nav nav-tabs matches-tab" id="myTab" role="tablist">
+                <li class="nav-item"> 
+                  <a class="nav-link active" id="cricket-tab" data-toggle="tab" href="#cricket" role="tab" aria-controls="cricket" aria-selected="true"><span class="m-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="150px" height="150px" viewBox="0 0 150 150" enable-background="new 0 0 150 150" xml:space="preserve">
+                        <path d="M123.484,148.967c0-0.489,0-0.898,0-1.305c-0.01-37.158-0.021-74.317-0.033-111.477c-0.001-3.371,0.091-6.748-0.077-10.113 c-0.08-1.614-0.624-3.215-1.032-4.803c-0.178-0.689-0.721-1.033-1.473-1.162c-2.809-0.484-5.58-0.229-8.328,0.361 c-0.373,0.081-0.854,0.542-0.941,0.91c-0.324,1.38-0.703,2.792-0.715,4.195c-0.072,9.129-0.062,18.26-0.063,27.391 c-0.004,31.654-0.002,63.309-0.002,94.962c0,0.336,0,0.671,0,1.039C115.083,148.967,119.209,148.967,123.484,148.967z"/>
+                        <path d="M82.125,148.964c0-0.467,0.001-0.844,0-1.225c-0.02-39.852-0.041-79.703-0.063-119.555c0-0.095,0-0.191,0-0.285 c-0.002-2.135-0.033-4.262-0.845-6.289c-0.329-0.82-0.805-1.345-1.762-1.515c-2.452-0.435-4.866-0.213-7.306,0.088 c-1.33,0.165-1.979,0.833-2.191,2.076c-0.042,0.25-0.159,0.492-0.168,0.741c-0.119,2.791-0.313,5.581-0.314,8.373 c-0.021,36.958-0.013,73.918-0.015,110.875c0,0.51-0.026,1.019-0.026,1.527c-0.004,1.731-0.002,3.463-0.002,5.187 C73.718,148.964,77.848,148.964,82.125,148.964z"/>
+                        <path d="M39.178,148.999c0-0.422,0-0.736,0-1.051c-0.021-40.463-0.043-80.924-0.064-121.385c0-0.064,0.011-0.129-0.002-0.19 c-0.321-1.642-0.604-3.293-0.988-4.918c-0.191-0.802-0.801-1.205-1.659-1.353c-2.778-0.478-5.519-0.236-8.221,0.426 c-0.414,0.103-0.904,0.656-1.011,1.088c-0.313,1.254-0.598,2.549-0.629,3.834c-0.095,4.037-0.086,8.076-0.086,12.115 c-0.004,36.806-0.002,73.61,0,110.416c0,0.332,0.035,0.668,0.053,1.019C30.8,148.999,34.925,148.999,39.178,148.999z"/>
+                        <path d="M123.4,23.507c0,3.123-2.557,5.655-5.71,5.655H32.941c-3.153,0-5.709-2.532-5.709-5.655l0,0 c0-3.123,2.556-5.654,5.709-5.654h84.749C120.844,17.853,123.4,20.384,123.4,23.507L123.4,23.507z"/>
+                        </svg>
+                    </span>Cricket</a>
+                </li>
+                <!-- <li class="nav-item">
+                  <a class="nav-link" id="basket-tab" data-toggle="tab" href="#basket" role="tab" aria-controls="basket" aria-selected="false"><span class="m-icon"><img src="assets/images/basket-icon.svg"/></span>BasketBall</a>
+                </li> -->
+                <!-- <li class="nav-item">
+                  <a class="nav-link" id="foot-tab" data-toggle="tab" href="#foot" role="tab" aria-controls="foot" aria-selected="false"><span class="m-icon"><img src="assets/images/football-icon.svg"/></span>FootBall</a>
+                </li> -->
+                <!-- <li class="nav-item">
+                        <a class="nav-link" id="hockey-tab" data-toggle="tab" href="#hockey" role="tab" aria-controls="hockey" aria-selected="false"><span class="m-icon"><img src="assets/images/hockey-icon.svg"/></span>Hockey</a>
+                </li> -->
+              </ul>
+</div>
+    </section>
+
+    <section class="sec-pad content-section">
+        <div class="container">
+                <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="cricket" role="tabpanel" aria-labelledby="cricket-tab">
+                         <div class="title-box sticky-header">
+                                <div class="black-bg-box">
+                                    <div class="row"> 
+                                      <div class="col mid-table">
+                                        <div class="icon"><img src="assets/images/user-pic.svg"/></div>
+                                        <div class="title-name"><span class="title-content">My Matches</span></div>
+                                        <div class="col align-self-center text-right white-t">
+                                         
+                                        </div>
+                                      </div>
+                                        
+                                        </div>
+                                      </div>
+                         </div>
+
+<div class="div-table-whl">
+<div class="div-table-wrapper top-list">
+<div *ngFor="let detail of mymatch | slice:0:3; let i=index" class="div-table-tr" [routerLink]="detail.status == 'notstarted' ? '/contests/'+detail.match_key : '/mycontest/'+detail.match_key">
+  
+<!-- <div *ngFor="let detail of mymatch" class="div-table-tr" routerLink="/contests/{{detail.match_key}}"> -->
+<div class="div-table-td match-name grey-t capitalize"><h5 class="black-t mb-0">{{detail.format}} <span class="s-t">{{detail.season_name}}</span></h5>
+{{ detail.name}}</div>
+<div class="div-table-td country-name text-uppercase">{{detail.team1_key}}<span class="grey-t">VS</span>{{detail.team2_key}}</div>
+<div class="div-table-td flag-name"><div class="flags-whl">
+<span class="flag-pic-s"><img src="assets/images/flag/{{detail.team1_key}}.svg" /></span>
+<span class="trophy-pic"><img src="assets/images/tropy1.svg" /></span>
+<span class="flag-pic"><img src="assets/images/flag/{{detail.team2_key}}.svg" /></span>
+</div></div>
+<div class="div-table-td grey-t s-t text-uppercase text-center">{{detail.time_left}}<span class="grey-t s-t text-uppercase"></span></div>
+
+<!-- <div class="div-table-td time-level"><span class="grey-t s-t text-uppercase">{{detail.time_left}}</span></div> -->
+<div class="div-table-td join-link text-uppercase s-t">Joined</div>
+</div>
+
+
+<div *ngIf="mymatchcount == 0" class="div-table-tr">
+<div class="div-table-td join-link text-uppercase s-t">No Records Found</div>
+</div>                               
+</div>
+</div>
+
+<div *ngIf="mymatchcount >= 3" class="text-center"><a class="btn col-md-3 btn green-btn" routerLink="/mymatch">View all</a></div>
+
+<hr class="space-line"/>
+<!--up-coming-matches-->
+
+<div class="title-box sticky-header">
+    <div class="black-bg-box">
+        <div class="row">
+            <div class="col mid-table">
+              <div class="icon"><img src="assets/images/tropy.svg"/></div>
+              <div class="title-name"><span class="title-content">Upcoming Matches</span></div>
+              <div class="col align-self-center text-right white-t">
+               
+              </div>
+            </div>
+            
+            
+            </div>
+          </div>
+</div>
+
+<div class="div-table-whl">
+ <div class="div-table-wrapper"> 
+     <!-- <div class="div-table-tr" routerLink="/contests">
+         <div class="div-table-td match-name grey-t"><h5 class="black-t mb-0">20-20 Cricket</h5>India vs Pakistan</div>
+         <div class="div-table-td country-name text-uppercase">IND<span class="grey-t">VS</span>PAK</div>
+         <div class="div-table-td flag-name"><div class="flags-whl">
+           <span class="flag-pic-s"><img src="assets/images/flag/in.svg" /></span>
+           <span class="trophy-pic"><img src="assets/images/tropy.svg" /></span>
+           <span class="flag-pic"><img src="assets/images/flag/pk.svg" /></span>
+          </div></div>
+         <div class="div-table-td time-level"><span class="grey-t s-t text-uppercase">Completed</span></div>
+         <div class="div-table-td join-link text-uppercase s-t">Joined</div>
+     </div> -->
+
+     <div  *ngFor="let detail of match_details" class="div-table-tr" routerLink="/contests/{{detail.key}}">
+      <div class="div-table-td match-name grey-t capitalize"><h5 class="black-t mb-0">{{detail.format}} <span class="s-t">{{detail.season_name}}</span></h5>
+        {{ detail.name}}</div>
+      <div class="div-table-td country-name text-uppercase">{{detail.team1_key}}<span class="grey-t">VS</span>{{detail.team2_kay}}</div>
+      <div class="div-table-td flag-name">
+        <div class="flags-whl">
+        <span class="flag-pic-s"><img src="assets/images/flag/{{detail.team1_key}}.svg" /></span>
+        <span class="trophy-pic"><img src="assets/images/tropy1.svg" /></span>
+        <span class="flag-pic"><img src="assets/images/flag/{{detail.team2_kay}}.svg" /></span>
+       </div>
+      </div>
+      <!-- <countdown #cd [config]="{leftTime: detail.start_date,format: 'h:m:s'}"></countdown> -->
+
+      <div class="div-table-td grey-t s-t text-uppercase text-center">{{detail.left_time}} left<span class="grey-t s-t text-uppercase"></span></div>
+      <div class="div-table-td join-link text-uppercase s-t">-</div>
+  </div>
+
+ </div>
+</div>
+                        </div>
+
+                <!-- other games below -->
+                        <!-- <div class="tab-pane fade" id="basket" role="tabpanel" aria-labelledby="basket-tab">
+<div class="mx-auto col-md-8 white-box text-center b-icon"><br/><h4 class="grey-t">Comming Soon!</h4><br/><img class="grey-icon"  src="assets/images/basket-icon.svg"/><br/></div>
+
+                        </div> -->
+                        <!-- <div class="tab-pane fade" id="foot" role="tabpanel" aria-labelledby="foot-tab">
+                            <div class="mx-auto col-md-8 white-box text-center b-icon"><br/><h4 class="grey-t">Comming Soon!</h4><br/><img class="grey-icon"  src="assets/images/football-icon.svg"/><br/></div>
+                        </div> -->
+                        <!-- <div class="tab-pane fade" id="hockey" role="tabpanel" aria-labelledby="hockey-tab">
+                            <div class="mx-auto col-md-8 white-box text-center b-icon"><br/><h4 class="grey-t">Comming Soon!</h4><br/><img class="grey-icon"  src="assets/images/hockey-icon.svg"/><br/></div>
+                        </div> -->
+                      </div>
+        </div>
+    </section>
+</article>
+<app-inner-footer></app-inner-footer>
